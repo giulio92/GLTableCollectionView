@@ -9,11 +9,12 @@
 import UIKit
 
 class GLIndexedCollectionView: UICollectionView {
-	var indexPath: IndexPath?
+	var indexPath: IndexPath!
 }
 
 class GLCollectionTableViewCell: UITableViewCell {
-	@IBOutlet private weak var collectionView: GLIndexedCollectionView!
+	@IBOutlet weak var collectionView: GLIndexedCollectionView!
+	var collectionViewOffset: CGFloat = 0.0
 
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,8 @@ class GLCollectionTableViewCell: UITableViewCell {
 	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate:UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.dataSource = dataSource
 		collectionView.delegate = delegate
+		collectionView.setContentOffset(self.collectionView.contentOffset, animated: false)
+
 		collectionView.indexPath = indexPath
 		collectionView.reloadData()
 	}

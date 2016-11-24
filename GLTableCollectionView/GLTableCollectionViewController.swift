@@ -9,6 +9,8 @@
 import UIKit
 
 class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+	var scrollOffsetDictionary: [Int: CGFloat] = [:]
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -27,7 +29,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Data Source>
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 5
+		return 20
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +66,13 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		let cell: GLCollectionTableViewCell = cell as! GLCollectionTableViewCell
 
 		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+		cell.collectionViewOffset = scrollOffsetDictionary[indexPath.row] ?? 0.0
+	}
+
+	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		let cell: GLCollectionTableViewCell = cell as! GLCollectionTableViewCell
+
+		scrollOffsetDictionary[indexPath.row] = cell.collectionViewOffset
 	}
 
 	// MARK: <UICollectionView Data Source>
