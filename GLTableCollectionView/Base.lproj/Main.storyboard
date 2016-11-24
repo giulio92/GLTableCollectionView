@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lzn-74-EiO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ClH-cz-IEW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -16,15 +16,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="collectionTableCellID" id="2tm-hF-cWj" customClass="GLCollectionTableViewCell" customModule="GLTableCollectionView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tm-hF-cWj" id="Wdm-1Y-fzT">
                                     <frame key="frameInset" width="375" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yjf-I0-gDS" customClass="GLIndexedCollectionView" customModule="GLTableCollectionView" customModuleProvider="target">
-                                            <frame key="frameInset" width="375" height="87"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yjf-I0-gDS" customClass="GLIndexedCollectionView" customModule="GLTableCollectionView" customModuleProvider="target">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u6C-EZ-Vag">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -45,6 +43,12 @@
                                             </cells>
                                         </collectionView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Yjf-I0-gDS" firstAttribute="top" secondItem="Wdm-1Y-fzT" secondAttribute="top" id="8PD-fG-eUU"/>
+                                        <constraint firstItem="Yjf-I0-gDS" firstAttribute="leading" secondItem="Wdm-1Y-fzT" secondAttribute="leading" id="RVY-qM-3VH"/>
+                                        <constraint firstAttribute="bottom" secondItem="Yjf-I0-gDS" secondAttribute="bottom" id="bRi-Rd-Cra"/>
+                                        <constraint firstAttribute="trailing" secondItem="Yjf-I0-gDS" secondAttribute="trailing" id="jaB-7P-tEQ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="collectionView" destination="Yjf-I0-gDS" id="mn5-Eh-jHv"/>
@@ -56,10 +60,27 @@
                             <outlet property="delegate" destination="lzn-74-EiO" id="YDl-Je-pUC"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="WzN-fZ-JZa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uC6-kj-tec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212" y="123.68815592203899"/>
+            <point key="canvasLocation" x="254" y="246"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nlg-y4-M8M">
+            <objects>
+                <navigationController storyboardIdentifier="navigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ClH-cz-IEW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fmK-uj-jX1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lzn-74-EiO" kind="relationship" relationship="rootViewController" id="7rc-7g-dv9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVy-2h-ZUI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-550" y="245"/>
         </scene>
     </scenes>
 </document>

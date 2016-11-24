@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -27,7 +27,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Data Source>
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
+		return 5
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,6 +40,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// Configure the cell...
 
 		return cell
+	}
+
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return "Section: " + section.description
 	}
 
     /*
@@ -92,7 +96,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 1
+		return 10
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,6 +108,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	// MARK: <UICollectionViewDelegate Flow Layout>
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return UIEdgeInsetsMake(0, 10, 0, 10)
+	}
 
 	// MARK: <UICollectionView Delegate>
 
