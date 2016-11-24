@@ -10,7 +10,7 @@
         <scene sceneID="MYD-pX-siV">
             <objects>
                 <tableViewController storyboardIdentifier="tableCollectionView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lzn-74-EiO" customClass="GLTableCollectionViewController" customModule="GLTableCollectionView" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="l3B-sn-hQc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="1" id="l3B-sn-hQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,7 +38,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </view>
-                                                    <color key="backgroundColor" red="0.61568627450000002" green="0.0" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.87857814560000003" alpha="1" colorSpace="calibratedWhite"/>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
