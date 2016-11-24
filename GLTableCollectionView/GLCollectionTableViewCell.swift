@@ -13,13 +13,42 @@ class GLIndexedCollectionView: UICollectionView {
 }
 
 class GLCollectionTableViewCell: UITableViewCell {
-	@IBOutlet weak var collectionView: GLIndexedCollectionView!
-	var collectionViewOffset: CGFloat = 0.0
+	var collectionView: GLIndexedCollectionView!
+
+	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+		let collectionLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+		collectionLayout.scrollDirection = .horizontal
+
+		collectionView = GLIndexedCollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
+		collectionView.register(UINib.init(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
+		collectionView.backgroundColor = .white
+		collectionView.showsHorizontalScrollIndicator = false
+		collectionView.showsVerticalScrollIndicator = false
+		collectionView.bounces = true
+		collectionView.isDirectionalLockEnabled = true
+		collectionView.isMultipleTouchEnabled = false
+		collectionView.isPagingEnabled = false
+		collectionView.isOpaque = true
+
+		contentView.addSubview(collectionView)
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+
+		collectionView.frame = contentView.bounds
+	}
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -30,9 +59,20 @@ class GLCollectionTableViewCell: UITableViewCell {
 	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate:UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.dataSource = dataSource
 		collectionView.delegate = delegate
-		collectionView.setContentOffset(self.collectionView.contentOffset, animated: false)
-
 		collectionView.indexPath = indexPath
+		
+		collectionView.setContentOffset(collectionView.contentOffset, animated: false)
+		
 		collectionView.reloadData()
+	}
+
+	var collectionViewOffset: CGFloat {
+		set {
+			collectionView.contentOffset.x = newValue
+		}
+
+		get {
+			return collectionView.contentOffset.x
+		}
 	}
 }

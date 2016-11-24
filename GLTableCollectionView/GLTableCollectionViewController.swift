@@ -37,11 +37,18 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "collectionTableCellID", for: indexPath)
+		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "tableViewCellID" + indexPath.section.description) as? GLCollectionTableViewCell
+
+		if cell == nil {
+			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: "tableViewCellID")
+			cell?.selectionStyle = .none
+			cell?.isOpaque = true
+			cell?.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+		}
 
 		// Configure the cell...
 
-		return cell
+		return cell!
 	}
 
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -63,14 +70,18 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Delegate>
 
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		let cell: GLCollectionTableViewCell = cell as! GLCollectionTableViewCell
+		guard let cell = cell as? GLCollectionTableViewCell else {
+			return
+		}
 
 		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
 		cell.collectionViewOffset = scrollOffsetDictionary[indexPath.row] ?? 0.0
 	}
 
 	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		let cell: GLCollectionTableViewCell = cell as! GLCollectionTableViewCell
+		guard let cell = cell as? GLCollectionTableViewCell else {
+			return
+		}
 
 		scrollOffsetDictionary[indexPath.row] = cell.collectionViewOffset
 	}
@@ -86,17 +97,30 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCellID", for: indexPath)
+		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCellID", for: indexPath) as! GLIndexedCollectionViewCell
 
 		// Configure the cell...
+		cell.backgroundColor = .gray
 
 		return cell
 	}
 
 	// MARK: <UICollectionViewDelegate Flow Layout>
 
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: 50, height: 50)
+	}
+
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		return UIEdgeInsetsMake(0, 10, 0, 10)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 8
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+		return 0
 	}
 
 	// MARK: <UICollectionView Delegate>
