@@ -8,7 +8,13 @@
 
 import UIKit
 
+class GLIndexedCollectionView: UICollectionView {
+	var indexPath: IndexPath?
+}
+
 class GLCollectionTableViewCell: UITableViewCell {
+	@IBOutlet private weak var collectionView: GLIndexedCollectionView!
+
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,4 +25,11 @@ class GLCollectionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
+	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate:UICollectionViewDelegate, indexPath: IndexPath) {
+		collectionView.dataSource = dataSource
+		collectionView.delegate = delegate
+		collectionView.indexPath = indexPath
+		collectionView.reloadData()
+	}
 }

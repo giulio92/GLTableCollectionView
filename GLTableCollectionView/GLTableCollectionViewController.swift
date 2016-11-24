@@ -31,11 +31,11 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return 1
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "collectionTableCellID", for: indexPath)
 
 		// Configure the cell...
 
@@ -77,6 +77,14 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
     }
     */
 
+	// MARK: <UITableView Delegate>
+
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		let cell: GLCollectionTableViewCell = cell as! GLCollectionTableViewCell
+
+		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+	}
+
 	// MARK: <UICollectionView Data Source>
 
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -88,11 +96,19 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCellID", for: indexPath)
 
 		// Configure the cell...
 
 		return cell
+	}
+
+	// MARK: <UICollectionViewDelegate Flow Layout>
+
+	// MARK: <UICollectionView Delegate>
+
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
 	}
 
     /*
