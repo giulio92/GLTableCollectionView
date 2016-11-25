@@ -60,19 +60,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.dataSource = dataSource
 		collectionView.delegate = delegate
 		collectionView.indexPath = indexPath
-		
-		collectionView.setContentOffset(collectionView.contentOffset, animated: false)
-		
+
 		collectionView.reloadData()
-	}
-
-	var collectionViewOffset: CGFloat {
-		set {
-			collectionView.contentOffset.x = newValue
-		}
-
-		get {
-			return collectionView.contentOffset.x
-		}
 	}
 }

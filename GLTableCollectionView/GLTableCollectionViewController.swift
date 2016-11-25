@@ -10,6 +10,8 @@ import UIKit
 
 class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	var scrollOffsetDictionary: [Int: CGFloat] = [:]
+	let tableCellID: String = "tableViewCellID_section#"
+	let collectionCellID: String = "collectionViewCellID"
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -37,13 +39,11 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "tableViewCellID" + indexPath.section.description) as? GLCollectionTableViewCell
+		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
 
 		if cell == nil {
-			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: "tableViewCellID")
-			cell?.selectionStyle = .none
-			cell?.isOpaque = true
-			cell?.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: tableCellID + indexPath.section.description)
+			cell!.selectionStyle = .none
 		}
 
 		// Configure the cell...
@@ -75,15 +75,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		}
 
 		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
-		cell.collectionViewOffset = scrollOffsetDictionary[indexPath.row] ?? 0.0
-	}
-
-	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		guard let cell = cell as? GLCollectionTableViewCell else {
-			return
-		}
-
-		scrollOffsetDictionary[indexPath.row] = cell.collectionViewOffset
 	}
 
 	// MARK: <UICollectionView Data Source>
@@ -97,7 +88,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCellID", for: indexPath) as! GLIndexedCollectionViewCell
+		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
 
 		// Configure the cell...
 		cell.backgroundColor = .gray
