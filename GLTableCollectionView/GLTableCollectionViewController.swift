@@ -12,6 +12,9 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	var scrollOffsetDictionary: [Int: CGFloat] = [:]
 	let tableCellID: String = "tableViewCellID_section#"
 	let collectionCellID: String = "collectionViewCellID"
+	let numberOfSections: Int = 20
+	let numberOfCollectionsForRow: Int = 1
+	let numberOfCollectionItems: Int = 10
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,11 +34,11 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Data Source>
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 20
+		return numberOfSections
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return numberOfCollectionsForRow
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,7 +87,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 10
+		return numberOfCollectionItems
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,14 +95,14 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 		// Configure the cell...
 		cell.backgroundColor = .gray
-
+		
 		return cell
 	}
 
 	// MARK: <UICollectionViewDelegate Flow Layout>
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: 50, height: 50)
+		return CGSize(width: 65, height: 65)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
