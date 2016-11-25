@@ -66,10 +66,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 		if cell == nil {
 			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: tableCellID + indexPath.section.description)
+
+			// Configure the cell...
 			cell!.selectionStyle = .none
 		}
-
-		// Configure the cell...
 
 		return cell!
 	}
@@ -130,7 +130,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 8
+		return 10
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
