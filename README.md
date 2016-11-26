@@ -23,12 +23,11 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 - [x] ```UICollectionView``` cell recycle
 - [x] Both ```UITableView``` & ```UICollectionView``` can have sections
 - [x] Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
-- [x] Swift 3.0+
 
 ## Requirements
 - Xcode 8.0+
 - Swift 3.0+
 - iOS 8.0+
 
-#### Note
-GLTableCollectionView is written using Swift 3.0 so it would only support iOS 8.0+ due to Swift 3 language compatibility, if you use Swift 2.0 in your project or you need iOS 7.0+ compatibility GLTableCollectionView will work too, but you **must** convert ```UITableView``` and ```UICollectionView``` Data Source and Delegate methods signatures before building your code
+## Note
+GLTableCollectionView is written using Swift 3.0 so it would only support iOS 8.0+ due to Swift 3 language compatibility, if you use Swift 2.0 in your project or you need iOS 7.0+ compatibility GLTableCollectionView will work too, but you **must** convert ```UITableView``` and ```UICollectionView``` Data Source and Delegate methods signatures before building your code or Xcode won't compile.
