@@ -10,7 +10,17 @@
 [![codebeat badge](https://codebeat.co/badges/5a29ccd4-fda0-45d1-ae57-e7158e01449a)](https://codebeat.co/projects/github-com-giulio92-gltablecollectionview)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/giulio92/GLTableCollectionView/master/LICENSE.txt)
 
-# How it works
+## How it works
 <p align="center">
     <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="675">
 </p>
+
+## Features
+- [x] Uses the same ```UITableView``` reusable cells logic provided from Apple's implementation
+- [x] ```UICollectionView``` cell recycle
+- [x] Both ```UITableView``` & ```UICollectionView``` can have sections
+- [x] Swift 3.0+
+
+## Requirements
+- Xcode 8.0+
+- Swift 3.0+
