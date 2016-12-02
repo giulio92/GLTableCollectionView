@@ -8,6 +8,12 @@
 
 import UIKit
 
+class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+	override func awakeFromNib() {
+		super.awakeFromNib()
+	}
+}
+
 class GLIndexedCollectionView: UICollectionView {
 	var indexPath: IndexPath!
 }
@@ -18,7 +24,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		let collectionLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionLayout.scrollDirection = .horizontal
 
 		collectionView = GLIndexedCollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
