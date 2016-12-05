@@ -27,7 +27,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionLayout.scrollDirection = .horizontal
 
-		collectionView = GLIndexedCollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
+		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionLayout)
 		collectionView.register(UINib.init(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
 		collectionView.backgroundColor = .white
 		collectionView.showsHorizontalScrollIndicator = false

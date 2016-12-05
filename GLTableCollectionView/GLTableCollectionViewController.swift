@@ -23,6 +23,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	let numberOfCollectionsForRow: Int = 1
 	let numberOfCollectionItems: Int = 10
 
+	var colorsDict: [Int: [UIColor]] = [:]
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -33,6 +35,20 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// Uncomment the following line to display an Edit button in the
 		// navigation bar for this view controller.
 		// self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+		for tableViewSection in 0..<numberOfSections {
+			var colorsArray: [UIColor] = []
+
+			for _ in 0..<numberOfCollectionItems {
+				let randomRed: CGFloat = CGFloat(arc4random_uniform(256))
+				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
+				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
+
+				colorsArray.append(UIColor(red: randomRed/255.0, green: randomGreen/255.0, blue: randomBlue/255.0, alpha: 1.0))
+			}
+
+			colorsDict[tableViewSection] = colorsArray
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -115,8 +131,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
 
+		let indexedCollection: GLIndexedCollectionView = collectionView as! GLIndexedCollectionView
+
 		// Configure the cell...
-		cell.backgroundColor = .gray
+		cell.backgroundColor = colorsDict[indexedCollection.indexPath.section]?[indexPath.row]
 
 		return cell
 	}
