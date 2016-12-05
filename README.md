@@ -18,6 +18,12 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
     <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="675">
 </p>
 
+## Demo
+
+<p align="center">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="270">
+</p>
+
 ## Features
 - [x] Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
 - [x] ```UICollectionView``` cell recycle
