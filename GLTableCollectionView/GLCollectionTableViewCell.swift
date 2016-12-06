@@ -53,6 +53,10 @@ class GLCollectionTableViewCell: UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
+		guard collectionView.frame != contentView.bounds else {
+			return
+		}
+
 		collectionView.frame = contentView.bounds
 	}
 
@@ -62,10 +66,16 @@ class GLCollectionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate:UICollectionViewDelegate, indexPath: IndexPath) {
-		collectionView.dataSource = dataSource
-		collectionView.delegate = delegate
+	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
+		
+		if collectionView.dataSource == nil {
+			collectionView.dataSource = dataSource
+		}
+
+		if collectionView.delegate == nil {
+			collectionView.delegate = delegate
+		}
 
 		collectionView.reloadData()
 	}
