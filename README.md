@@ -1,7 +1,7 @@
 # GLTableCollectionView
 
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/blob/master/GitHub%20Page/Images/logo.png" width="800">
+    <img src="https://github.com/giulio92/GLTableCollectionView/blob/master/GitHub%20Page/Images/logo.png" width="700">
 </p>
 
 [![Travis](https://travis-ci.org/giulio92/GLTableCollectionView.svg?branch=master)](https://travis-ci.org/giulio92/GLTableCollectionView)
@@ -21,7 +21,7 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 ## Demo
 
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="270">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="250">
 </p>
 
 ## Features
