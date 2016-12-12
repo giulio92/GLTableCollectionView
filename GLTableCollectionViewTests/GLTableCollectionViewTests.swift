@@ -20,9 +20,10 @@ class GLTableCollectionViewTests: XCTestCase {
 		let controller: GLTableCollectionViewController = GLTableCollectionViewController()
 
 		XCTAssertGreaterThan(controller.numberOfSections, 0, "UITableView must have at least one section")
-		XCTAssertGreaterThan(controller.numberOfCollectionsForRow, 0, "There should be at least a GLIndexedCollectionView per UITableViewCell")
-		XCTAssertGreaterThan(controller.numberOfCollectionItems, 0, "There should be at least one GLIndexedCollectionViewCell")
-		XCTAssertNotEqual(controller.tableCellID, "", "The cellIdentifier for the UITableViewCells should not be empty")
+		XCTAssertGreaterThan(controller.numberOfCollectionsForRow, 0, "There must be at least a GLIndexedCollectionView per UITableViewCell")
+		XCTAssertGreaterThan(controller.numberOfCollectionItems, 0, "There must be at least one GLIndexedCollectionViewCell")
+		XCTAssertNotEqual(controller.tableCellID, "", "The cellIdentifier for the UITableViewCells must not be empty")
+		XCTAssertTrue(controller.tableCellID.hasSuffix("_section_#"), "The cellIdentifier for the UITableViewCells must end with section number suffix")
 		XCTAssertNotEqual(controller.collectionCellID, "", "The cellIdentifier for the UICollectionCells should not be empty")
 	}
 

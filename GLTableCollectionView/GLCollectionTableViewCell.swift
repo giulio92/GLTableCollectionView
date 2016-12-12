@@ -22,6 +22,9 @@ class GLIndexedCollectionView: UICollectionView {
 	You can use it to discriminate between all the possible
 	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
 	`delegate` methods
+	
+	This should be set and updated using GLCollectionTableViewCell's
+	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors
 
 	*/
 	var indexPath: IndexPath!
