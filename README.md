@@ -24,13 +24,13 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 </p>
 
 ## Features
-- [x] Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
-- [x] ```UICollectionView``` cell recycle
-- [x] Both ```UITableView``` & ```UICollectionView``` can have their own sections
-- [x] Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
-- [x] Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
-- [x] Storyboard and AutoLayout compatibility
-- [x] Clean architecture
+- 🔄 Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
+- ♻️ ```UICollectionView``` cell recycle
+- 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections
+- 🖼 Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
+- ✨ Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
+- 📐 Storyboard and AutoLayout compatibility
+- 💎 Clean architecture
 
 ## Requirements
 - Xcode 8.0+
