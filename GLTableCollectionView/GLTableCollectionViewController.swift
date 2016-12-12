@@ -9,8 +9,6 @@
 import UIKit
 
 class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-	var scrollOffsetDictionary: [Int: CGFloat] = [:]
-
 	// This string constant will be the cellIdentifier for the UITableViewCells
 	// holding the UICollectionView, it's important to append "_section#" to it
 	// so we can understand which cell is the one we are looking for in the
