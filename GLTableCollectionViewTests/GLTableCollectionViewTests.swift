@@ -11,6 +11,7 @@ import XCTest
 
 class GLTableCollectionViewTests: XCTestCase {
 	var tableCollectionView: GLTableCollectionViewController!
+	var visibleCells: [UITableViewCell]!
 
 	override func setUp() {
 		super.setUp()
@@ -20,6 +21,8 @@ class GLTableCollectionViewTests: XCTestCase {
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 		tableCollectionView = storyboard.instantiateViewController(withIdentifier: "tableCollectionView") as! GLTableCollectionViewController
 		tableCollectionView.beginAppearanceTransition(true, animated: false)
+
+		visibleCells = tableCollectionView.tableView.visibleCells
 	}
 
 	func testTableViewDataSource() {
@@ -52,7 +55,7 @@ class GLTableCollectionViewTests: XCTestCase {
 	}
 
 	func testUITableViewCellsClass() {
-		let visibleCells: [UITableViewCell] = tableCollectionView.tableView.visibleCells
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for cell in visibleCells {
 			XCTAssertTrue(cell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
@@ -61,6 +64,10 @@ class GLTableCollectionViewTests: XCTestCase {
 
 	func testOpaqueFlag() {
 		XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
+
+		for cell in visibleCells as! [GLCollectionTableViewCell] {
+			XCTAssertTrue(cell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performance")
+		}
 	}
 
 	override func tearDown() {
