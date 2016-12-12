@@ -1,4 +1,3 @@
 language: objective-c
 osx_image: xcode8.1
 xcode_project: GLTableCollectionView.xcodeproj
-xcode_scheme: GLTableCollectionView
