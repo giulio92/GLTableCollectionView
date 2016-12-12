@@ -13,15 +13,14 @@
 ## What it is
 GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView part since it has been made on the same Data Source and Delegate methods with no additions.
 
+## Demo
+<p align="center">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="250">
+</p>
+
 ## How it works
 <p align="center">
     <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="675">
-</p>
-
-## Demo
-
-<p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="250">
 </p>
 
 ## Features
