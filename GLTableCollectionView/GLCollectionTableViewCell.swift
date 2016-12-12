@@ -15,6 +15,15 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 class GLIndexedCollectionView: UICollectionView {
+	/**
+	
+	The inner-`indexPath` of the GLIndexedCollectionView.
+
+	You can use it to discriminate between all the possible
+	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
+	`delegate` methods
+
+	*/
 	var indexPath: IndexPath!
 }
 
@@ -71,7 +80,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	Re-assigns `dataSource` and `delegate` classes back to the
 	GLIndexedCollectionView inside GLCollectionTableViewCell.
 	
-	Call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
+	It's highly recommended to call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
 	method of GLTableCollectionViewController so the UITableView will re-assign
 	it automatically following the regular UITableViewCells reuse logic.
 	
