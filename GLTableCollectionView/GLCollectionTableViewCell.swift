@@ -91,13 +91,17 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	- Parameter dataSource: The `dataSource` class for the
 	GLIndexedCollectionView in the GLCollectionTableViewCell, it will be
-	responsible for the usual UICollectionView dataSource methods
+	responsible for the usual UICollectionView `dataSource` methods
 
 	- Parameter delegate: The `delegate class` for the GLIndexedCollectionView
 	in the GLCollectionTableViewCell, it will be responsible for the usual
 	UICollectionView delegation methods
 
-	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView
+	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView,
+	it's recommended to pass the same `indexPath` of the UITableViewCell to the
+	GLIndexedCollectionView so they will share the same `indexPath.section`
+	making easier to understand from which UITableViewCell the UICollectionView
+	will come from.
 
 	*/
 	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {

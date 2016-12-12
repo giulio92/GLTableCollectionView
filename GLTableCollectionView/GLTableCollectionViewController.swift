@@ -76,8 +76,9 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// dequeueReusableCell will only reuse previous UITableViewCells with
 		// the same cellIdentifier instead of using any UITableViewCell as a
 		// regular UITableView would do, this is necessary because every cell
-		// will have a different UICollecionView and UICollectionViewCells in it
-		// and UITableView reuse won't work as expected giving back wrong cells.
+		// will have a different UICollectionView and UICollectionViewCells in
+		// it and UITableView reuse won't work as expected giving back wrong
+		// cells.
 		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
 
 		if cell == nil {
