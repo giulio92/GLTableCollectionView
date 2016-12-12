@@ -22,11 +22,11 @@ class GLTableCollectionViewTests: XCTestCase {
 		tableCollectionView.beginAppearanceTransition(true, animated: false)
 	}
 
-	func testDataSource() {
+	func testTableViewDataSource() {
 		XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
 	}
 
-	func testDelegate() {
+	func testTableViewDelegate() {
 		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
 	}
 
@@ -43,6 +43,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		let colorsDictionary: [Int: [UIColor]] = tableCollectionView.colorsDict
 
 		XCTAssertNotNil(colorsDictionary, "Colors dictionary is nil")
+		XCTAssertNotEqual(colorsDictionary.count, 0, "Colors dictionary is empty")
 		XCTAssertEqual(colorsDictionary.count, tableCollectionView.numberOfSections, "The number of keys in the colors dictionary must match the number of UITableView sections")
 
 		for colorSection in 0..<tableCollectionView.numberOfSections {
@@ -66,5 +67,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		// Put teardown code here. This method is called after the invocation of
 		// each test method in the class.
 		super.tearDown()
+
+		tableCollectionView.endAppearanceTransition()
 	}
 }
