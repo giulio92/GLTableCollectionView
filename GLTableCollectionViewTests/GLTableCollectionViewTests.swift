@@ -16,12 +16,14 @@ class GLTableCollectionViewTests: XCTestCase {
 		// each test method in the class.
 	}
 
-	func testIstantVariables() {
+	func testInstanceVariables() {
 		let controller: GLTableCollectionViewController = GLTableCollectionViewController()
 
 		XCTAssertGreaterThan(controller.numberOfSections, 0, "UITableView must have at least one section")
 		XCTAssertGreaterThan(controller.numberOfCollectionsForRow, 0, "There should be at least a GLIndexedCollectionView per UITableViewCell")
 		XCTAssertGreaterThan(controller.numberOfCollectionItems, 0, "There should be at least one GLIndexedCollectionViewCell")
+		XCTAssertNotEqual(controller.tableCellID, "", "The cellIdentifier for the UITableViewCells should not be empty")
+		XCTAssertNotEqual(controller.collectionCellID, "", "The cellIdentifier for the UICollectionCells should not be empty")
 	}
 
 	func testRandomColorsGeneration() {
@@ -36,6 +38,13 @@ class GLTableCollectionViewTests: XCTestCase {
 		for colorSection in 0..<controller.numberOfSections {
 			XCTAssertEqual(colorsDictionary[colorSection]!.count, controller.numberOfCollectionItems, "The number of colors for section must match the number of UICollectionCells")
 		}
+	}
+
+	func testOpaqueFlag() {
+		let controller: GLTableCollectionViewController = GLTableCollectionViewController()
+		controller.viewDidLoad()
+
+		XCTAssertTrue(controller.tableView.isOpaque, "The UITableView should be opaque for increased performances")
 	}
 
 	override func tearDown() {
