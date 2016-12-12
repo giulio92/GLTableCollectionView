@@ -66,6 +66,28 @@ class GLCollectionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+	/**
+	
+	Re-assigns `dataSource` and `delegate` class(es) back to the
+	GLIndexedCollectionView inside GLCollectionTableViewCell.
+	
+	Call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
+	method of GLTableCollectionViewController so the UITableView will re-assign
+	it automatically following the regular UITableViewCells reuse logic.
+	
+	This method will also check if the re-assignment is needed or not.
+
+	- Parameter dataSource: The `dataSource` class for the GLIndexedCollectionView
+	in the GLCollectionTableViewCell, it will be responsible for the usual
+	UICollectionView dataSource methods
+
+	- Parameter delegate: The `delegate class` for the GLIndexedCollectionView in
+	the GLCollectionTableViewCell, it will be responsible for the usual
+	UICollectionView delegation methods
+
+	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView
+
+	*/
 	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
 		
