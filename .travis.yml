@@ -1,9 +1,17 @@
 language: objective-c
 osx_image: xcode8.1
+
+env:
+    global:
+        - PROJECT = GLTableCollectionView.xcodeproj
+        - SCHEME = GLTableCollectionView
+        - SDK = iphonesimulator10.1
+        - DESTINATION = platform=iOS Simulator,name=iPhone 5,OS=10.1
+
 xcode_project: GLTableCollectionView.xcodeproj
 xcode_scheme: GLTableCollectionView
 before_install:
-    - brew update
-    - brew install xctool
+    - xcodebuild -version
+    - xcodebuild -showsdks
 
-script: xctool -project GLTableCollectionView.xcodeproj -scheme GLTableCollectionView run-tests -test-sdk iphonesimulator
+script: xcodebuild -project GLTableCollectionView.xcodeproj -sdk iphonesimulator10.1 -destination 'name=iPhone 5,OS=10.1' -scheme GLTableCollectionView -configuration Debug test
