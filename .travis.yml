@@ -1,3 +1,9 @@
 language: objective-c
 osx_image: xcode8.1
 xcode_project: GLTableCollectionView.xcodeproj
+xcode_scheme: GLTableCollectionView
+before_install:
+    - brew update
+    - brew install xctool
+
+script: xctool -project GLTableCollectionView.xcodeproj -scheme GLTableCollectionView run-tests -test-sdk iphonesimulator
