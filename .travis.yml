@@ -6,7 +6,7 @@ env:
         - PROJECT = GLTableCollectionView.xcodeproj
         - SCHEME = GLTableCollectionView
         - SDK = iphonesimulator10.1
-        - DESTINATION = platform=iOS Simulator,name=iPhone 5,OS=10.1
+        - DESTINATION = "name=iPhone 5,OS=10.1"
 
 xcode_project: GLTableCollectionView.xcodeproj
 xcode_scheme: GLTableCollectionView
@@ -14,4 +14,4 @@ before_install:
     - xcodebuild -version
     - xcodebuild -showsdks
 
-script: xcodebuild -project GLTableCollectionView.xcodeproj -sdk iphonesimulator10.1 -destination 'name=iPhone 5,OS=10.1' -scheme GLTableCollectionView -configuration Debug test
+script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test
