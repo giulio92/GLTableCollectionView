@@ -25,14 +25,6 @@ class GLTableCollectionViewTests: XCTestCase {
 		visibleCells = tableCollectionView.tableView.visibleCells
 	}
 
-	func testTableViewDataSource() {
-		XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
-	}
-
-	func testTableViewDelegate() {
-		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
-	}
-
 	func testInstanceVariables() {
 		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0, "UITableView must have at least one section")
 		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0, "There must be at least a GLIndexedCollectionView per UITableViewCell")
@@ -54,11 +46,26 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testUITableViewCellsClass() {
+	func testTableViewDataSource() {
+		XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
+	}
+
+	func testTableViewDelegate() {
+		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
+	}
+
+	func testUITableViewCellClass() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for cell in visibleCells {
-			XCTAssertTrue(cell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
+		for tableViewCell in visibleCells {
+			XCTAssertTrue(tableViewCell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
+		}
+	}
+
+	func testDataSourceAndDelegateCollectionCells() {
+		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+			XCTAssertNotNil(tableViewCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
+			XCTAssertNotNil(tableViewCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
 		}
 	}
 
