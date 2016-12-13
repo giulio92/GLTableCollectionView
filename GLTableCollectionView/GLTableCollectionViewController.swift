@@ -19,7 +19,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	let numberOfSections: Int = 20
 	let numberOfCollectionsForRow: Int = 1
-	let numberOfCollectionItems: Int = 10
+	let numberOfCollectionItems: Int = 20
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
