@@ -15,7 +15,8 @@ before_install:
     - brew upgrade
     - gem update
     - gem install xcpretty
+    - gem install xcpretty-travis-formatter
     - xcodebuild -version
     - xcodebuild -showsdks
 
-script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty && exit ${PIPESTATUS[0]}
+script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
