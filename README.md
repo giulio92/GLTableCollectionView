@@ -11,7 +11,7 @@
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/giulio92/GLTableCollectionView/master/LICENSE.txt)
 
 ## What it is
-GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView part since it has been made on the same Data Source and Delegate methods with no additions.
+GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView parts since it has been made on the same Data Source and Delegate methods with no complicated additions.
 
 ## Demo
 <p align="center">
@@ -26,11 +26,12 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 ## Features
 - 🔄 Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
 - ♻️ ```UICollectionView``` cell recycle
-- 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections
+- 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers
 - 🖼 Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
 - ✨ Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
-- 📐 Storyboard and AutoLayout compatibility
+- 📐 Storyboard and Auto Layout compatibility
 - 💎 Clean architecture
+- 🔧 Unit Tests
 
 ## Requirements
 - Xcode 8.0+
