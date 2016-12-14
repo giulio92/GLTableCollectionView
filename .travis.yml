@@ -18,4 +18,4 @@ before_install:
     - xcodebuild -version
     - xcodebuild -showsdks
 
-script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty
+script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty && exit ${PIPESTATUS[0]}
