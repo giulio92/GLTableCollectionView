@@ -11,7 +11,11 @@ env:
 xcode_project: GLTableCollectionView.xcodeproj
 xcode_scheme: GLTableCollectionView
 before_install:
+    - brew update
+    - brew upgrade
+    - gem update
+    - gem install xcpretty
     - xcodebuild -version
     - xcodebuild -showsdks
 
-script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test
+script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty
