@@ -9,11 +9,17 @@
 import UIKit
 
 class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+	var scrollPagination: Bool?
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+		guard scrollPagination == true else {
+			return CGPoint(x: proposedContentOffset.x, y: 0)
+		}
+
 		return CGPoint(x: proposedContentOffset.x, y: 0)
 	}
 }
@@ -46,12 +52,14 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	*/
 	weak var collectionView: GLIndexedCollectionView!
+	var paginatedScrolling: Bool?
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionLayout.scrollDirection = .horizontal
+		collectionLayout.scrollPagination = paginatedScrolling
 
 		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionLayout)
 		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
