@@ -23,7 +23,7 @@ class GLIndexedCollectionView: UICollectionView {
 	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
 	`delegate` methods
 	
-	This should be set and updated using GLCollectionTableViewCell's
+	This should be set and updated only through GLCollectionTableViewCell's
 	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors
 
 	*/
@@ -31,7 +31,17 @@ class GLIndexedCollectionView: UICollectionView {
 }
 
 class GLCollectionTableViewCell: UITableViewCell {
-	var collectionView: GLIndexedCollectionView!
+	/**
+
+	The UICollectionView inside a UITableViewCell itself.
+	
+	It's recommended to keep the variable `public` so it would be easier to
+	access later in the code, for example in UITableView's `dataSource` and
+	`delegate` methods. For light to mid-heavy implementations `weak` is also
+	suggested.
+
+	*/
+	weak var collectionView: GLIndexedCollectionView!
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
