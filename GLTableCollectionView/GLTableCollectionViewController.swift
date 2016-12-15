@@ -38,9 +38,13 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 			var colorsArray: [UIColor] = []
 
 			for _ in 0..<numberOfCollectionItems {
-				let randomRed: CGFloat = CGFloat(arc4random_uniform(256))
+				var randomRed: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
+
+				if (randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0) {
+					randomRed = CGFloat(arc4random_uniform(128))
+				}
 
 				colorsArray.append(UIColor(red: randomRed/255.0, green: randomGreen/255.0, blue: randomBlue/255.0, alpha: 1.0))
 			}

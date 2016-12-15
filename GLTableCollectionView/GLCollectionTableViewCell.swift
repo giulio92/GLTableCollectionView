@@ -21,10 +21,10 @@ class GLIndexedCollectionView: UICollectionView {
 
 	You can use it to discriminate between all the possible
 	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
-	`delegate` methods
+	`delegate` methods.
 	
 	This should be set and updated only through GLCollectionTableViewCell's
-	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors
+	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors.
 
 	*/
 	var indexPath: IndexPath!
@@ -101,11 +101,11 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	- Parameter dataSource: The `dataSource` class for the
 	GLIndexedCollectionView in the GLCollectionTableViewCell, it will be
-	responsible for the usual UICollectionView `dataSource` methods
+	responsible for the usual UICollectionView `dataSource` methods.
 
 	- Parameter delegate: The `delegate class` for the GLIndexedCollectionView
 	in the GLCollectionTableViewCell, it will be responsible for the usual
-	UICollectionView delegation methods
+	UICollectionView delegation methods.
 
 	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView,
 	it's recommended to pass the same `indexPath` of the UITableViewCell to the
