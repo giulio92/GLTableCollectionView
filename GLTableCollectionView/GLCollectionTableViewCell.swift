@@ -12,6 +12,10 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
+
+	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+		return CGPoint(x: proposedContentOffset.x, y: 0)
+	}
 }
 
 class GLIndexedCollectionView: UICollectionView {
