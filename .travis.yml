@@ -8,14 +8,13 @@ env:
         - SDK=iphonesimulator10.1
         - DESTINATION="OS=10.1,name=iPhone 5"
 
-xcode_project: GLTableCollectionView.xcodeproj
-xcode_scheme: GLTableCollectionView
 before_install:
     - brew update
     - brew upgrade
     - gem update
     - gem install xcpretty
     - gem install xcpretty-travis-formatter
+    - gem clean
     - xcodebuild -version
     - xcodebuild -showsdks
 
