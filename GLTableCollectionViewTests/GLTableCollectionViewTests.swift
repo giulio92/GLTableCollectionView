@@ -25,12 +25,15 @@ class GLTableCollectionViewTests: XCTestCase {
 		visibleCells = tableCollectionView.tableView.visibleCells
 	}
 
+	// MARK: <GLTableCollectionViewController>
+
 	func testInstanceVariables() {
 		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0, "UITableView must have at least one section")
 		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0, "There must be at least a GLIndexedCollectionView per UITableViewCell")
 		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0, "There must be at least one GLIndexedCollectionViewCell")
 		XCTAssertNotEqual(tableCollectionView.tableCellID, "", "The cellIdentifier for the UITableViewCells must not be empty")
 		XCTAssertTrue(tableCollectionView.tableCellID.hasSuffix("_section_#"), "The cellIdentifier for the UITableViewCells must end with section number suffix")
+		XCTAssertTrue((tableCollectionView.tableCellID.components(separatedBy: "#").count - 1) == 1, "The cellIdentifier for the UITableViewCells must contain only one # in it")
 		XCTAssertNotEqual(tableCollectionView.collectionCellID, "", "The cellIdentifier for the UICollectionCells should not be empty")
 	}
 
@@ -62,12 +65,22 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
+	func testTableViewCellsIdentifier() {
+		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0, "The GLCollectionTableViewCell cellIdentifier must end with a positive integer")
+		}
+	}
+
+	// MARK: <GLCollectionTableViewCell>
+
 	func testDataSourceAndDelegateCollectionCells() {
 		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
 			XCTAssertNotNil(tableViewCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
 			XCTAssertNotNil(tableViewCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
 		}
 	}
+
+	// MARK: <Other>
 
 	func testOpaqueFlag() {
 		XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
