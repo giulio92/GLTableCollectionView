@@ -23,7 +23,12 @@
                             <outlet property="delegate" destination="lzn-74-EiO" id="YDl-Je-pUC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="WzN-fZ-JZa"/>
+                    <navigationItem key="navigationItem" id="WzN-fZ-JZa">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="LBO-Mh-3o9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="settingsButton" destination="LBO-Mh-3o9" id="EvU-9q-xNV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uC6-kj-tec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

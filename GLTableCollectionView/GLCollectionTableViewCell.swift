@@ -52,14 +52,28 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	*/
 	weak var collectionView: GLIndexedCollectionView!
-	var paginatedScrolling: Bool?
+
+	/**
+
+	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
+	the GLIndexedCollectionView will paginate scrolling or not.
+
+	Set to [true]() to make the UICollectionView paginate scrolling based on
+	it's `itemSize`, set to [false]() for regular scrolling. The
+	`UICollectionViewFlowLayout` will deduct the appropriate scrolling offset
+	values automatically and you should not set the `itemSize` value directly.
+
+	Default value is `nil`, since this `Bool` is `Optional`.
+
+	*/
+	var collectionViewScrollPagination: Bool?
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionLayout.scrollDirection = .horizontal
-		collectionLayout.scrollPagination = paginatedScrolling
+		collectionLayout.scrollPagination = collectionViewScrollPagination
 
 		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionLayout)
 		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
