@@ -17,6 +17,19 @@
 ## What it is
 GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView parts since it has been made on the same Data Source and Delegate methods with no complicated additions.
 
+## Features
+||**GLTableCollectionView**|
+|:---:|---|
+|🔄|Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation|
+|♻️|```UICollectionView``` cell recycle|
+|🆒|Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers|
+|🖼|Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know|
+|✨|Previous ```UICollectionView``` **.contentOffset** value restoration after scroll|
+|↔️|UICollectionViewCell size-based (optional) pagination|
+|📐|Storyboard and Auto Layout compatibility|
+|💎|Clean architecture|
+|🔧|Unit Tests|
+
 ## Demo
 <p align="center">
     <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="220">
@@ -26,17 +39,6 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 <p align="center">
     <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="675">
 </p>
-
-## Features
-- 🔄 Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
-- ♻️ ```UICollectionView``` cell recycle
-- 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers
-- 🖼 Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
-- ✨ Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
-- ↔️ UICollectionViewCell size-based (optional) pagination
-- 📐 Storyboard and Auto Layout compatibility
-- 💎 Clean architecture
-- 🔧 Unit Tests
 
 ## Requirements
 - Xcode 8.0+
