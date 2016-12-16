@@ -23,8 +23,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
-	@IBOutlet private weak var settingsButton: UIBarButtonItem!
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

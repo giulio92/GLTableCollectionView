@@ -20,7 +20,17 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
-		return CGPoint(x: proposedContentOffset.x, y: 0)
+		let proposedXCoordinate = proposedContentOffset.x + 5 * 2
+
+		var offsetAdjustment: CGFloat = 9999
+
+		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
+			if abs(layoutAttributes.frame.origin.x - proposedXCoordinate) < abs(offsetAdjustment) {
+				offsetAdjustment = layoutAttributes.frame.origin.x - proposedXCoordinate
+			}
+		}
+
+		return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: 0)
 	}
 }
 
@@ -53,27 +63,12 @@ class GLCollectionTableViewCell: UITableViewCell {
 	*/
 	weak var collectionView: GLIndexedCollectionView!
 
-	/**
-
-	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
-	the GLIndexedCollectionView will paginate scrolling or not.
-
-	Set to [true]() to make the UICollectionView paginate scrolling based on
-	it's `itemSize`, set to [false]() for regular scrolling. The
-	`UICollectionViewFlowLayout` will deduct the appropriate scrolling offset
-	values automatically and you should not set the `itemSize` value directly.
-
-	Default value is `nil`, since this `Bool` is `Optional`.
-
-	*/
-	var collectionViewScrollPagination: Bool?
-
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionLayout.scrollDirection = .horizontal
-		collectionLayout.scrollPagination = collectionViewScrollPagination
+		collectionLayout.scrollPagination = true
 
 		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionLayout)
 		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
@@ -84,7 +79,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.isDirectionalLockEnabled = true
 		collectionView.isMultipleTouchEnabled = false
 
-		if collectionViewScrollPagination == true {
+		if collectionLayout.scrollPagination == true {
 			collectionView.isPagingEnabled = false
 		}
 
