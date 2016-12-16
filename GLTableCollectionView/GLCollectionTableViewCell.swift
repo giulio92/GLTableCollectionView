@@ -34,11 +34,25 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// collectionViewInsets value with the approriate one.
 		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
 
+		// We start by creating a variable and we assign a very high CGFloat to
+		// it, a big number here is needed to cover very large
+		// UICollectionViewContentSize cases.
 		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
 
+		// Now we loop through all the different layout attributes of the
+		// UICollectionViewCells contained between the .x value of the
+		// proposedContentOffset and collectionView's width looking for the cell
+		// which needs the least offsetCorrection.
 		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
-			if abs(layoutAttributes.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
-				offsetCorrection = layoutAttributes.frame.origin.x - proposedXCoordWithInsets
+			// Since layoutAttributesForElements may contain all sort of layout
+			// attributes we need to check if it belongs to a
+			// UICollectionViewCell, otherwise logic won't work.
+			if layoutAttributes.representedElementCategory == .cell {
+				if abs(layoutAttributes.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
+					offsetCorrection = layoutAttributes.frame.origin.x - proposedXCoordWithInsets
+				}
+			} else {
+				// Elements different from UICollectionViewCell will fall here.
 			}
 		}
 
