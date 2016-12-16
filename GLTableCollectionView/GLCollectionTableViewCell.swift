@@ -83,7 +83,11 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.bounces = true
 		collectionView.isDirectionalLockEnabled = true
 		collectionView.isMultipleTouchEnabled = false
-		collectionView.isPagingEnabled = false
+
+		if collectionViewScrollPagination == true {
+			collectionView.isPagingEnabled = false
+		}
+
 		collectionView.isOpaque = true
 
 		contentView.addSubview(collectionView)
