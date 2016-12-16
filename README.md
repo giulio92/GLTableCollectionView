@@ -1,7 +1,7 @@
 # GLTableCollectionView
 
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/blob/master/GitHub%20Page/Images/logo.png" width="700">
+    <img src="https://github.com/giulio92/GLTableCollectionView/blob/master/GitHub%20Page/Images/logo.png" width="675">
 </p>
 
 |**Branch**|**Status**|
@@ -17,25 +17,34 @@
 ## What it is
 GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView parts since it has been made on the same Data Source and Delegate methods with no complicated additions.
 
+||**GLTableCollectionView**|
+|:---:|---|
+|🔄|Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation|
+|♻️|```UICollectionView``` cell recycle|
+|🆒|Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers|
+|🖼|Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know|
+|✨|Previous ```UICollectionView``` **.contentOffset** value restoration after scroll|
+|↔️|UICollectionViewCell size-based (optional) pagination|
+|📐|Storyboard and Auto Layout compatibility|
+|💎|Clean architecture|
+|🔧|Unit Tests|
+
+## Enable/disable scroll pagination
+Set ```paginationEnabled``` variable ```true``` in GLTableCollectionViewController class, ```false``` to disable
+```
+// Set true to enable UICollectionViews scroll pagination
+var paginationEnabled: Bool = true
+```
+
 ## Demo
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="250">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="220">
 </p>
 
 ## How it works
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="675">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/diagram.png" width="625">
 </p>
-
-## Features
-- 🔄 Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation
-- ♻️ ```UICollectionView``` cell recycle
-- 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers
-- 🖼 Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
-- ✨ Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
-- 📐 Storyboard and Auto Layout compatibility
-- 💎 Clean architecture
-- 🔧 Unit Tests
 
 ## Requirements
 - Xcode 8.0+

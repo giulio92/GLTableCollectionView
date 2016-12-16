@@ -23,6 +23,9 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
+	// Set true to enable UICollectionViews scroll pagination
+	var paginationEnabled: Bool = true
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -90,6 +93,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
+			cell!.collectionViewScrollPagination = paginationEnabled
 		}
 
 		return cell!
@@ -134,10 +138,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
 
-		let indexedCollection: GLIndexedCollectionView = collectionView as! GLIndexedCollectionView
-
 		// Configure the cell...
-		cell.backgroundColor = colorsDict[indexedCollection.indexPath.section]?[indexPath.row]
+		cell.backgroundColor = colorsDict[(collectionView as! GLIndexedCollectionView).indexPath.section]?[indexPath.row]
 
 		return cell
 	}
