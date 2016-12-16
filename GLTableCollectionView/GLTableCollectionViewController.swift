@@ -23,7 +23,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
-	// Set to true for UICollectionViews scrolling pagination
+	// Set true to enable UICollectionViews scroll pagination
 	var paginationEnabled: Bool = true
 
 	override func viewDidLoad() {
