@@ -20,17 +20,18 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
-		let proposedXCoordinate = proposedContentOffset.x + 5 * 2
+		let collectionViewInsets: CGFloat = 10.0
+		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
 
-		var offsetAdjustment: CGFloat = 9999
+		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
 
 		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
-			if abs(layoutAttributes.frame.origin.x - proposedXCoordinate) < abs(offsetAdjustment) {
-				offsetAdjustment = layoutAttributes.frame.origin.x - proposedXCoordinate
+			if abs(layoutAttributes.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
+				offsetCorrection = layoutAttributes.frame.origin.x - proposedXCoordWithInsets
 			}
 		}
 
-		return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: 0)
+		return CGPoint(x: proposedContentOffset.x + offsetCorrection, y: 0)
 	}
 }
 
