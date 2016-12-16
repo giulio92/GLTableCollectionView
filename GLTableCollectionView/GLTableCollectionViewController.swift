@@ -23,9 +23,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
-	var paginationEnabled: Bool = false
-
-	@IBOutlet private weak var settingsButton: UIBarButtonItem!
+	// Set to true for UICollectionViews scrolling pagination
+	var paginationEnabled: Bool = true
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -60,18 +59,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
-	}
-
-	@IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
-		paginationEnabled = !paginationEnabled
-
-		if paginationEnabled {
-			sender.title = "Paged"
-			sender.style = .done
-		} else {
-			sender.title = "Not paged"
-			sender.style = .plain
-		}
 	}
 
 	// MARK: <UITableView Data Source>
@@ -136,7 +123,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		}
 
 		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
-		cell.collectionViewScrollPagination = paginationEnabled
 	}
 
 	// MARK: <UICollectionView Data Source>
