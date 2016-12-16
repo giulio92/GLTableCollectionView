@@ -137,8 +137,6 @@ class GLCollectionTableViewCell: UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
-		collectionFlowLayout.customPagination = collectionViewScrollPagination
-
 		if collectionViewScrollPagination == true {
 			collectionView.isPagingEnabled = false
 		}
@@ -184,6 +182,8 @@ class GLCollectionTableViewCell: UITableViewCell {
 	*/
 	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
+
+		collectionFlowLayout.customPagination = collectionViewScrollPagination
 		
 		if collectionView.dataSource == nil {
 			collectionView.dataSource = dataSource

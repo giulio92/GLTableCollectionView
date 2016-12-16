@@ -136,6 +136,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		}
 
 		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+		cell.collectionViewScrollPagination = paginationEnabled
 	}
 
 	// MARK: <UICollectionView Data Source>
