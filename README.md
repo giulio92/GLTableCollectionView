@@ -19,7 +19,7 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 
 ## Demo
 <p align="center">
-    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="250">
+    <img src="https://github.com/giulio92/GLTableCollectionView/raw/master/GitHub%20Page/Images/demonstration.gif" width="220">
 </p>
 
 ## How it works
@@ -33,6 +33,7 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 - 🆒 Both ```UITableView``` & ```UICollectionView``` can have their own sections and/or headers
 - 🖼 Customization of ```UICollectionViewCell```s using the same ```UICollectionViewDelegate Flow Layout``` you already know
 - ✨ Previous ```UICollectionView``` **.contentOffset** value restoration after scroll
+- ↔️ UICollectionViewCell size-based (optional) pagination
 - 📐 Storyboard and Auto Layout compatibility
 - 💎 Clean architecture
 - 🔧 Unit Tests
