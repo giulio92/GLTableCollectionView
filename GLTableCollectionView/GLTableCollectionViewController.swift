@@ -23,6 +23,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
+	@IBOutlet private weak var settingsButton: UIBarButtonItem!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -90,6 +92,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
+			cell?.collectionViewScrollPagination = false
 		}
 
 		return cell!

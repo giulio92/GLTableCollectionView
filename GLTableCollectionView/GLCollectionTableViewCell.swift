@@ -9,14 +9,14 @@
 import UIKit
 
 class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-	var scrollPagination: Bool?
+	var customPagination: Bool?
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-		guard scrollPagination == true else {
+		guard customPagination == true else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
@@ -42,7 +42,8 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// Now we loop through all the different layout attributes of the
 		// UICollectionViewCells contained between the .x value of the
 		// proposedContentOffset and collectionView's width looking for the cell
-		// which needs the least offsetCorrection.
+		// which needs the least offsetCorrection value, it will mean that it's
+		// the first cell on the left of the screen which will give pagination.
 		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
 			// Since layoutAttributesForElements may contain all sort of layout
 			// attributes we need to check if it belongs to a
@@ -88,15 +89,29 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	*/
 	weak var collectionView: GLIndexedCollectionView!
+	let collectionFlowLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
+
+	/**
+
+	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
+	the GLIndexedCollectionView will paginate scrolling or not.
+
+	Set to [true]() to make the UICollectionView paginate scrolling based on
+	it's `itemSize`, set to [false]() for regular scrolling. The
+	`UICollectionViewFlowLayout` will deduct the appropriate scrolling offset
+	values automatically and you should not set the `itemSize` value directly.
+
+	Default value is `nil`, since this `Bool` is `Optional`.
+
+	*/
+	var collectionViewScrollPagination: Bool?
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		let collectionLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
-		collectionLayout.scrollDirection = .horizontal
-		collectionLayout.scrollPagination = true
+		collectionFlowLayout.scrollDirection = .horizontal
 
-		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionFlowLayout)
 		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
 		collectionView.backgroundColor = .white
 		collectionView.showsHorizontalScrollIndicator = false
@@ -104,11 +119,6 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.bounces = true
 		collectionView.isDirectionalLockEnabled = true
 		collectionView.isMultipleTouchEnabled = false
-
-		if collectionLayout.scrollPagination == true {
-			collectionView.isPagingEnabled = false
-		}
-
 		collectionView.isOpaque = true
 
 		contentView.addSubview(collectionView)
@@ -125,6 +135,12 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
+
+		collectionFlowLayout.customPagination = collectionViewScrollPagination
+
+		if collectionViewScrollPagination == true {
+			collectionView.isPagingEnabled = false
+		}
 
 		guard collectionView.frame != contentView.bounds else {
 			return
