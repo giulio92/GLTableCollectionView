@@ -20,7 +20,18 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
+		// To make paginated scrolling work fine this CGFloat below must be
+		// equal to the value set in the insetForSectionAt method
+		// UICollectionView's UICollectionViewDelegate Flow Layout.
 		let collectionViewInsets: CGFloat = 10.0
+
+		// Since UICollectionViewFlowLayout proposedContentOffset coordinates
+		// won't take count of any UICollectionView UIEdgeInsets values we need
+		// to fix it by adding collectionViewInsets to .x coordinate.
+		//
+		// Note: This will cover horizonal scrolling and pagination, if you need
+		// vertical pagination replace the .x coordinate with .y and update
+		// collectionViewInsets value with the approriate one.
 		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
 
 		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
