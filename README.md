@@ -17,7 +17,6 @@
 ## What it is
 GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UICollectionView``` for each ```UITableViewCell```, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView parts since it has been made on the same Data Source and Delegate methods with no complicated additions.
 
-## Features
 ||**GLTableCollectionView**|
 |:---:|---|
 |🔄|Uses the **same** ```UITableView``` reusable cells logic provided from Apple's implementation|
@@ -29,6 +28,13 @@ GLTableCollectionView is a ready-to-use ```UITableViewController``` with a ```UI
 |📐|Storyboard and Auto Layout compatibility|
 |💎|Clean architecture|
 |🔧|Unit Tests|
+
+## Enable/disable scroll pagination
+Set ```paginationEnabled``` variable ```true``` in GLTableCollectionViewController class, ```false``` to disable
+```
+// Set true to enable UICollectionViews scroll pagination
+var paginationEnabled: Bool = true
+```
 
 ## Demo
 <p align="center">
