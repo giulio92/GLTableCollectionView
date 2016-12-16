@@ -80,6 +80,14 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
+	func testCollectionNativePaginationFlag() {
+		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+			if tableViewCell.collectionViewScrollPagination == true {
+				XCTAssertTrue(tableViewCell.collectionView.isPagingEnabled, "Custom scrolling pagionation and native UICollectionView pagination can't be enabled at the same time")
+			}
+		}
+	}
+
 	// MARK: <Other>
 
 	func testOpaqueFlag() {
