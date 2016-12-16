@@ -152,10 +152,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
 
-		let indexedCollection: GLIndexedCollectionView = collectionView as! GLIndexedCollectionView
-
 		// Configure the cell...
-		cell.backgroundColor = colorsDict[indexedCollection.indexPath.section]?[indexPath.row]
+		cell.backgroundColor = colorsDict[(collectionView as! GLIndexedCollectionView).indexPath.section]?[indexPath.row]
 
 		return cell
 	}

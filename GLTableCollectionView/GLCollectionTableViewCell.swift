@@ -63,13 +63,13 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 class GLIndexedCollectionView: UICollectionView {
 	/**
-	
+
 	The inner-`indexPath` of the GLIndexedCollectionView.
 
 	You can use it to discriminate between all the possible
 	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
 	`delegate` methods.
-	
+
 	This should be set and updated only through GLCollectionTableViewCell's
 	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors.
 
@@ -81,7 +81,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	/**
 
 	The UICollectionView inside a UITableViewCell itself.
-	
+
 	It's recommended to keep the variable `public` so it would be easier to
 	access later in the code, for example in UITableView's `dataSource` and
 	`delegate` methods. For light to mid-heavy implementations `weak` is also
@@ -124,22 +124,18 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 		contentView.addSubview(collectionView)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
 	override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+		super.awakeFromNib()
+		// Initialization code
+	}
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
-
-		if collectionViewScrollPagination == true {
-			collectionView.isPagingEnabled = false
-		}
 
 		guard collectionView.frame != contentView.bounds else {
 			return
@@ -148,21 +144,21 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.frame = contentView.bounds
 	}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+	override func setSelected(_ selected: Bool, animated: Bool) {
+		super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+		// Configure the view for the selected state
+	}
 
 	/**
-	
+
 	Re-assigns `dataSource` and `delegate` classes back to the
 	GLIndexedCollectionView inside GLCollectionTableViewCell.
-	
+
 	It's highly recommended to call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
 	method of GLTableCollectionViewController so the UITableView will re-assign
 	it automatically following the regular UITableViewCells reuse logic.
-	
+
 	This method will also check if the re-assignment is needed or not.
 
 	- Parameter dataSource: The `dataSource` class for the
@@ -184,7 +180,11 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionView.indexPath = indexPath
 
 		collectionFlowLayout.customPagination = collectionViewScrollPagination
-		
+
+		if collectionViewScrollPagination == true {
+			collectionView.isPagingEnabled = false
+		}
+
 		if collectionView.dataSource == nil {
 			collectionView.dataSource = dataSource
 		}
