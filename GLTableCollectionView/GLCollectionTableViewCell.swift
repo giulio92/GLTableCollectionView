@@ -89,7 +89,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	*/
 	weak var collectionView: GLIndexedCollectionView!
-	let collectionFlowLayout: GLIndexedCollectionViewFlowLayout = GLIndexedCollectionViewFlowLayout()
+	var collectionFlowLayout: GLIndexedCollectionViewFlowLayout!
 
 	/**
 
@@ -109,6 +109,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+		collectionFlowLayout = GLIndexedCollectionViewFlowLayout()
 		collectionFlowLayout.scrollDirection = .horizontal
 
 		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionFlowLayout)

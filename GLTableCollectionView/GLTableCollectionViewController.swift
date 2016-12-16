@@ -106,7 +106,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
-			cell?.collectionViewScrollPagination = paginationEnabled
+			cell!.collectionViewScrollPagination = paginationEnabled
 		}
 
 		return cell!
