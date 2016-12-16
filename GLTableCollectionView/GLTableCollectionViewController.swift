@@ -60,6 +60,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// Dispose of any resources that can be recreated.
 	}
 
+	@IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
+		
+	}
+
 	// MARK: <UITableView Data Source>
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,7 +96,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
-			cell?.collectionViewScrollPagination = false
 		}
 
 		return cell!
