@@ -12,8 +12,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// This string constant will be the cellIdentifier for the UITableViewCells
 	// holding the UICollectionView, it's important to append "_section#" to it
 	// so we can understand which cell is the one we are looking for in the
-	// debugger. Look in the UITableView's data source cellForRowAt method for
-	// more explaination about how we handle the cell reuse.
+	// debugger. Look in UITableView's data source cellForRowAt method for more
+	// explainations about the UITableViewCell reuse handling.
 	let tableCellID: String = "tableViewCellID_section_#"
 	let collectionCellID: String = "collectionViewCellID"
 
@@ -23,7 +23,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	var colorsDict: [Int: [UIColor]] = [:]
 
-	// Set true to enable UICollectionViews scroll pagination
+	/// Set true to enable UICollectionViews scroll pagination
 	var paginationEnabled: Bool = true
 
 	override func viewDidLoad() {
@@ -72,18 +72,18 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		// As you can see below instead of having a single cellIdentifier for
-		// each type of UITableViewCells, as you would do with normally, we will
-		// have multiple IDs each related to a indexPath section. Doing so the
-		// UITableViewCells will still be recycled but it will be done only with
-		// dequeueReusableCell of a given section.
+		// Instead of having a single cellIdentifier for each type of
+		// UITableViewCells, like in a regular implementation, we have multiple
+		// cellIDs, each related to a indexPath section. By Doing so the
+		// UITableViewCells will still be recycled but only with
+		// dequeueReusableCell of that section.
 		//
 		// For example the cellIdentifier for section 4 cells will be:
 		// "tableViewCellID_section_#3"
 		// dequeueReusableCell will only reuse previous UITableViewCells with
 		// the same cellIdentifier instead of using any UITableViewCell as a
 		// regular UITableView would do, this is necessary because every cell
-		// will have a different UICollectionView and UICollectionViewCells in
+		// will have a different UICollectionView with UICollectionViewCells in
 		// it and UITableView reuse won't work as expected giving back wrong
 		// cells.
 		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: tableCellID + indexPath.section.description) as? GLCollectionTableViewCell

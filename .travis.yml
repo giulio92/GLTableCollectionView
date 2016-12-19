@@ -6,7 +6,7 @@ env:
         - PROJECT=GLTableCollectionView.xcodeproj
         - SCHEME=GLTableCollectionView
         - SDK=iphonesimulator10.1
-        - DESTINATION="OS=10.1,name=iPhone 5"
+        - DESTINATION="platform=iOS Simulator,OS=latest,name=iPhone 5"
 
 before_install:
     - brew update
