@@ -171,11 +171,11 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	- Parameter dataSource: The `dataSource` class for the
 	GLIndexedCollectionView in the GLCollectionTableViewCell, it will be
-	responsible for the usual UICollectionView `dataSource` methods.
+	responsible for the UICollectionView's `dataSource` methods.
 
 	- Parameter delegate: The `delegate class` for the GLIndexedCollectionView
-	in the GLCollectionTableViewCell, it will be responsible for the usual
-	UICollectionView delegation methods.
+	in the GLCollectionTableViewCell, it will be responsible for the
+	UICollectionView's delegation methods.
 
 	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView,
 	it's recommended to pass the same `indexPath` of the UITableViewCell to the

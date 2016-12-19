@@ -12,8 +12,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// This string constant will be the cellIdentifier for the UITableViewCells
 	// holding the UICollectionView, it's important to append "_section#" to it
 	// so we can understand which cell is the one we are looking for in the
-	// debugger. Look in the UITableView's data source cellForRowAt method for
-	// more explaination about how we handle the cell reuse.
+	// debugger. Look in UITableView's data source cellForRowAt method for more
+	// explainations about the UITableViewCell reuse handling.
 	let tableCellID: String = "tableViewCellID_section_#"
 	let collectionCellID: String = "collectionViewCellID"
 
@@ -73,9 +73,9 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		// Instead of having a single cellIdentifier for each type of
-		// UITableViewCells, like in a regular implementation, we will have
-		// multiple cellIDs each related to a precise indexPath section.
-		// Doing so the UITableViewCells will still be recycled but only with
+		// UITableViewCells, like in a regular implementation, we have multiple
+		// cellIDs, each related to a indexPath section. By Doing so the
+		// UITableViewCells will still be recycled but only with
 		// dequeueReusableCell of that section.
 		//
 		// For example the cellIdentifier for section 4 cells will be:
