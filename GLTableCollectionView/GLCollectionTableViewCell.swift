@@ -21,29 +21,31 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		}
 
 		// To make paginated scrolling work fine this CGFloat below must be
-		// equal to the value set in the insetForSectionAt method
+		// equal to the value set in the insetForSectionAt method of
 		// UICollectionView's UICollectionViewDelegate Flow Layout.
 		let collectionViewInsets: CGFloat = 10.0
 
 		// Since UICollectionViewFlowLayout proposedContentOffset coordinates
 		// won't take count of any UICollectionView UIEdgeInsets values we need
-		// to fix it by adding collectionViewInsets to .x coordinate.
+		// to fix it by adding collectionViewInsets to the .x coordinate.
 		//
-		// Note: This will cover horizonal scrolling and pagination, if you need
-		// vertical pagination replace the .x coordinate with .y and update
+		// Note: This will only cover horizonal scrolling and pagination, if you
+		// need vertical pagination replace the .x coordinate with .y and update
 		// collectionViewInsets value with the approriate one.
 		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
 
-		// We start by creating a variable and we assign a very high CGFloat to
-		// it, a big number here is needed to cover very large
-		// UICollectionViewContentSize cases.
+		// We now create a variable and we assign a very high CGFloat to it (a
+		// big number here is needed to cover very large
+		// UICollectionViewContentSize cases). This var will hold the needed
+		// horizontal adjustment to make the UICollectionView paginate scroll.
 		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
 
 		// Now we loop through all the different layout attributes of the
 		// UICollectionViewCells contained between the .x value of the
-		// proposedContentOffset and collectionView's width looking for the cell
-		// which needs the least offsetCorrection value, it will mean that it's
-		// the first cell on the left of the screen which will give pagination.
+		// proposedContentOffset and collectionView's width, looking for the
+		// cell which needs the least offsetCorrection value: it will mean that
+		// it's the first cell on the left of the screen which will give
+		// pagination.
 		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
 			// Since layoutAttributesForElements may contain all sort of layout
 			// attributes we need to check if it belongs to a
