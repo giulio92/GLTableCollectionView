@@ -107,11 +107,13 @@ class GLCollectionTableViewCell: UITableViewCell {
 
 	It's recommended to keep the variable `public` so it would be easier to
 	access later in the code, for example in UITableView's `dataSource` and
-	`delegate` methods. For light to mid-heavy implementations `weak` is also
-	suggested.
+	`delegate` methods. 
+	
+	GLIndexedCollectionView requires a `strong` ARC reference, do not assign a
+	`weak` reference otherwise it could result in a crash.
 
 	*/
-	weak var collectionView: GLIndexedCollectionView!
+	var collectionView: GLIndexedCollectionView!
 	var collectionFlowLayout: GLIndexedCollectionViewFlowLayout!
 
 	/**
