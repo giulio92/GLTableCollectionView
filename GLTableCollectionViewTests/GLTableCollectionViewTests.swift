@@ -3,7 +3,28 @@
 //  GLTableCollectionViewTests
 //
 //  Created by Giulio Lombardo on 24/11/16.
-//  Copyright © 2016 Giulio Lombardo. All rights reserved.
+//
+//  MIT License
+//
+//  Copyright (c) 2016 Giulio Lombardo
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 //
 
 import XCTest
@@ -66,6 +87,8 @@ class GLTableCollectionViewTests: XCTestCase {
 	}
 
 	func testTableViewCellsIdentifier() {
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+
 		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
 			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0, "The GLCollectionTableViewCell cellIdentifier must end with a positive integer")
 		}
@@ -74,16 +97,20 @@ class GLTableCollectionViewTests: XCTestCase {
 	// MARK: <GLCollectionTableViewCell>
 
 	func testDataSourceAndDelegateCollectionCells() {
-		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
-			XCTAssertNotNil(tableViewCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
-			XCTAssertNotNil(tableViewCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+
+		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
+			XCTAssertNotNil(collectionTableCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
+			XCTAssertNotNil(collectionTableCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
 		}
 	}
 
 	func testCollectionNativePaginationFlag() {
-		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
-			if tableViewCell.collectionViewScrollPagination == true {
-				XCTAssertFalse(tableViewCell.collectionView.isPagingEnabled, "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+
+		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
+			if collectionTableCell.collectionViewPaginatedScroll == true {
+				XCTAssertFalse(collectionTableCell.collectionView.isPagingEnabled, "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
 			}
 		}
 	}
@@ -93,8 +120,10 @@ class GLTableCollectionViewTests: XCTestCase {
 	func testOpaqueFlag() {
 		XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
 
-		for cell in visibleCells as! [GLCollectionTableViewCell] {
-			XCTAssertTrue(cell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performances")
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+
+		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
+			XCTAssertTrue(collectionTableCell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performances")
 		}
 	}
 

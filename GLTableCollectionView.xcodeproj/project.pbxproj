@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		745E87FE1DE74BC800788EC7 /* GLIndexedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745E87FC1DE74BC800788EC7 /* GLIndexedCollectionViewCell.swift */; };
-		745E87FF1DE74BC800788EC7 /* GLIndexedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 745E87FD1DE74BC800788EC7 /* GLIndexedCollectionViewCell.xib */; };
+		742CE82E1E099064000ACFB6 /* GLTableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CE82D1E099064000ACFB6 /* GLTableCollectionViewController.swift */; };
+		742CE8301E099070000ACFB6 /* GLCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CE82F1E099070000ACFB6 /* GLCollectionTableViewCell.swift */; };
+		742CE8321E099077000ACFB6 /* GLIndexedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CE8311E099077000ACFB6 /* GLIndexedCollectionViewCell.swift */; };
+		742CE8341E09907D000ACFB6 /* GLIndexedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742CE8331E09907D000ACFB6 /* GLIndexedCollectionViewCell.xib */; };
 		747CF8FD1DE6EB010051A5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CF8FC1DE6EB010051A5FF /* AppDelegate.swift */; };
 		747CF9021DE6EB010051A5FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747CF9001DE6EB010051A5FF /* Main.storyboard */; };
 		747CF9041DE6EB010051A5FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747CF9031DE6EB010051A5FF /* Assets.xcassets */; };
 		747CF9071DE6EB010051A5FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747CF9051DE6EB010051A5FF /* LaunchScreen.storyboard */; };
 		747CF9121DE6EB010051A5FF /* GLTableCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CF9111DE6EB010051A5FF /* GLTableCollectionViewTests.swift */; };
-		747CF91D1DE6EBFF0051A5FF /* GLTableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CF91C1DE6EBFF0051A5FF /* GLTableCollectionViewController.swift */; };
-		747CF91F1DE6ECB60051A5FF /* GLCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CF91E1DE6ECB60051A5FF /* GLCollectionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		745E87FC1DE74BC800788EC7 /* GLIndexedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLIndexedCollectionViewCell.swift; sourceTree = "<group>"; };
-		745E87FD1DE74BC800788EC7 /* GLIndexedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIndexedCollectionViewCell.xib; sourceTree = "<group>"; };
+		742CE82D1E099064000ACFB6 /* GLTableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GLTableCollectionViewController.swift; path = Classes/GLTableCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
+		742CE82F1E099070000ACFB6 /* GLCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GLCollectionTableViewCell.swift; path = Classes/GLCollectionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		742CE8311E099077000ACFB6 /* GLIndexedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GLIndexedCollectionViewCell.swift; path = Classes/GLIndexedCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		742CE8331E09907D000ACFB6 /* GLIndexedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GLIndexedCollectionViewCell.xib; path = Classes/GLIndexedCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		747CF8F91DE6EB010051A5FF /* GLTableCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLTableCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		747CF8FC1DE6EB010051A5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		747CF9011DE6EB010051A5FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,8 +42,6 @@
 		747CF90D1DE6EB010051A5FF /* GLTableCollectionViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GLTableCollectionViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		747CF9111DE6EB010051A5FF /* GLTableCollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTableCollectionViewTests.swift; sourceTree = "<group>"; };
 		747CF9131DE6EB010051A5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		747CF91C1DE6EBFF0051A5FF /* GLTableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLTableCollectionViewController.swift; sourceTree = "<group>"; };
-		747CF91E1DE6ECB60051A5FF /* GLCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCollectionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +84,13 @@
 			isa = PBXGroup;
 			children = (
 				747CF8FC1DE6EB010051A5FF /* AppDelegate.swift */,
-				747CF91C1DE6EBFF0051A5FF /* GLTableCollectionViewController.swift */,
-				747CF91E1DE6ECB60051A5FF /* GLCollectionTableViewCell.swift */,
-				745E87FC1DE74BC800788EC7 /* GLIndexedCollectionViewCell.swift */,
-				745E87FD1DE74BC800788EC7 /* GLIndexedCollectionViewCell.xib */,
+				742CE82D1E099064000ACFB6 /* GLTableCollectionViewController.swift */,
+				742CE82F1E099070000ACFB6 /* GLCollectionTableViewCell.swift */,
+				742CE8311E099077000ACFB6 /* GLIndexedCollectionViewCell.swift */,
+				742CE8331E09907D000ACFB6 /* GLIndexedCollectionViewCell.xib */,
 				747CF9001DE6EB010051A5FF /* Main.storyboard */,
-				747CF9031DE6EB010051A5FF /* Assets.xcassets */,
 				747CF9051DE6EB010051A5FF /* LaunchScreen.storyboard */,
+				747CF9031DE6EB010051A5FF /* Assets.xcassets */,
 				747CF9081DE6EB010051A5FF /* Info.plist */,
 			);
 			path = GLTableCollectionView;
@@ -190,8 +190,8 @@
 			files = (
 				747CF9071DE6EB010051A5FF /* LaunchScreen.storyboard in Resources */,
 				747CF9041DE6EB010051A5FF /* Assets.xcassets in Resources */,
+				742CE8341E09907D000ACFB6 /* GLIndexedCollectionViewCell.xib in Resources */,
 				747CF9021DE6EB010051A5FF /* Main.storyboard in Resources */,
-				745E87FF1DE74BC800788EC7 /* GLIndexedCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,10 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747CF91D1DE6EBFF0051A5FF /* GLTableCollectionViewController.swift in Sources */,
-				745E87FE1DE74BC800788EC7 /* GLIndexedCollectionViewCell.swift in Sources */,
-				747CF91F1DE6ECB60051A5FF /* GLCollectionTableViewCell.swift in Sources */,
+				742CE8301E099070000ACFB6 /* GLCollectionTableViewCell.swift in Sources */,
+				742CE82E1E099064000ACFB6 /* GLTableCollectionViewController.swift in Sources */,
 				747CF8FD1DE6EB010051A5FF /* AppDelegate.swift in Sources */,
+				742CE8321E099077000ACFB6 /* GLIndexedCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

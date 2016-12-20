@@ -114,7 +114,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
-			cell!.collectionViewScrollPagination = paginationEnabled
+			cell!.collectionViewPaginatedScroll = paginationEnabled
 		}
 
 		return cell!
@@ -167,12 +167,12 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	// MARK: <UICollectionViewDelegate Flow Layout>
 
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: 65, height: 65)
-	}
-
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		return UIEdgeInsetsMake(0, 10, 0, 10)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: 65, height: 65)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

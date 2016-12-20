@@ -30,14 +30,14 @@
 import UIKit
 
 class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-	var customPagination: Bool?
+	var paginatedScroll: Bool?
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-		guard customPagination == true else {
+		guard paginatedScroll == true else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
@@ -129,7 +129,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	Default value is `nil`, since this `Bool` is `Optional`.
 
 	*/
-	var collectionViewScrollPagination: Bool?
+	var collectionViewPaginatedScroll: Bool?
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -162,9 +162,9 @@ class GLCollectionTableViewCell: UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
-		collectionFlowLayout.customPagination = collectionViewScrollPagination
+		collectionFlowLayout.paginatedScroll = collectionViewPaginatedScroll
 
-		if collectionViewScrollPagination == true {
+		if collectionViewPaginatedScroll == true {
 			collectionView.isPagingEnabled = false
 		}
 
@@ -190,7 +190,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	method of GLTableCollectionViewController so the UITableView will re-assign
 	it automatically following the regular UITableViewCells reuse logic.
 
-	This method will also check if the re-assignment is needed or not.
+	This method will also check if the re-assignment are needed or not.
 
 	- Parameter dataSource: The `dataSource` class for the
 	GLIndexedCollectionView in the GLCollectionTableViewCell, it will be
