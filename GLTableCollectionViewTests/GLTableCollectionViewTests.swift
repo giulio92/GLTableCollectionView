@@ -49,12 +49,12 @@ class GLTableCollectionViewTests: XCTestCase {
 	// MARK: <GLTableCollectionViewController>
 
 	func testInstanceVariables() {
-		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0, "UITableView must have at least one section")
-		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0, "There must be at least a GLIndexedCollectionView per UITableViewCell")
-		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0, "There must be at least one GLIndexedCollectionViewCell")
-		XCTAssertNotEqual(tableCollectionView.tableCellID, "", "The cellIdentifier for the UITableViewCells must not be empty")
-		XCTAssertTrue(tableCollectionView.tableCellID.hasSuffix("_section_#"), "The cellIdentifier for the UITableViewCells must end with section number suffix")
-		XCTAssertTrue((tableCollectionView.tableCellID.components(separatedBy: "#").count - 1) == 1, "The cellIdentifier for the UITableViewCells must contain only one # in it")
+		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0, "numberOfSections was: \(tableCollectionView.numberOfSections)\nUITableView must have at least one section")
+		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0, "numberOfCollectionsForRow was: \(tableCollectionView.numberOfCollectionsForRow)\nThere must be at least a GLIndexedCollectionView per UITableViewCell")
+		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0, "numberOfCollectionItems was: \(tableCollectionView.numberOfCollectionItems)\nThere must be at least one GLIndexedCollectionViewCell")
+		XCTAssertNotEqual(tableCollectionView.tableCellID, "", "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must not be empty")
+		XCTAssertTrue(tableCollectionView.tableCellID.hasSuffix("_section_#"), "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must end with section number suffix")
+		XCTAssertTrue((tableCollectionView.tableCellID.components(separatedBy: "#").count - 1) == 1, "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
 		XCTAssertNotEqual(tableCollectionView.collectionCellID, "", "The cellIdentifier for the UICollectionCells should not be empty")
 	}
 
@@ -90,7 +90,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
-			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0, "The GLCollectionTableViewCell cellIdentifier must end with a positive integer")
+			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0, "GLCollectionTableViewCell cellIdentifier was: \(tableViewCell.reuseIdentifier)\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
 		}
 	}
 
@@ -111,6 +111,17 @@ class GLTableCollectionViewTests: XCTestCase {
 		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
 			if collectionTableCell.collectionViewPaginatedScroll == true {
 				XCTAssertFalse(collectionTableCell.collectionView.isPagingEnabled, "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
+			}
+		}
+	}
+
+	func testCollectionViewPaginationConsistency() {
+		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+
+		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
+			if collectionTableCell.collectionViewPaginatedScroll == true {
+				XCTAssertTrue(collectionTableCell.collectionView.isScrollEnabled, "If custom paginated scroll is enabled the UICollectionView should be scrollable")
+				XCTAssertTrue(collectionTableCell.collectionView.isUserInteractionEnabled, "If custom paginated scroll is enabled the UICollectionView shoud be user interactive")
 			}
 		}
 	}
