@@ -19,7 +19,7 @@ GLTableCollectionView is a ready to use `UITableViewController` with a `UICollec
 
 ||**GLTableCollectionView**|
 |:---:|---|
-|🔄|Uses the **same** `UITableView` reusable cells logic provided from Apple's implementation|
+|🔄|The **same** `UITableView` reusable cells logic provided from Apple's implementation|
 |♻️|`UICollectionView` cell recycle|
 |🆒|Both `UITableView` & `UICollectionView` can have their own sections and/or headers|
 |🎨|Customization of `UICollectionViewCell`s using the same `UICollectionViewDelegate Flow Layout` you already know|
