@@ -1,11 +1,11 @@
 language: objective-c
-osx_image: xcode8.1
+osx_image: xcode8.2
 
 env:
     global:
         - PROJECT=GLTableCollectionView.xcodeproj
         - SCHEME=GLTableCollectionView
-        - SDK=iphonesimulator10.1
+        - SDK=iphonesimulator10.2
         - DESTINATION="platform=iOS Simulator,OS=latest,name=iPhone 5"
 
 before_install:
