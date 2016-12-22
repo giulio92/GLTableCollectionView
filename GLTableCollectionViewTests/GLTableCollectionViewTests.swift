@@ -93,7 +93,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
 	}
 
-	func testUITableViewCellClass() {
+	func testUITableViewCellClasses() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for tableViewCell in visibleCells {
@@ -101,7 +101,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testTableViewCellsIdentifier() {
+	func testTableViewCellIdentifiers() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for tableViewCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -112,7 +112,7 @@ class GLTableCollectionViewTests: XCTestCase {
 
 	// MARK: <GLCollectionTableViewCell>
 
-	func testDataSourceAndDelegateCollectionCells() {
+	func testCollectionViewsDelegateAndDataSource() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for collectionTableCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -146,7 +146,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testCollectionViewCellsHeight() {
+	func testCollectionViewCellHeights() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		let tableViewCellHeight: CGFloat = tableCollectionView.tableView.rowHeight
