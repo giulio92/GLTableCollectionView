@@ -1,11 +1,11 @@
 language: objective-c
-osx_image: xcode8.1
+osx_image: xcode8.2
 
 env:
     global:
         - PROJECT=GLTableCollectionView.xcodeproj
         - SCHEME=GLTableCollectionView
-        - SDK=iphonesimulator10.1
+        - SDK=iphonesimulator10.2
         - DESTINATION="platform=iOS Simulator,OS=latest,name=iPhone 5"
 
 before_install:
@@ -17,5 +17,6 @@ before_install:
     - gem clean
     - xcodebuild -version
     - xcodebuild -showsdks
+    - xcrun simctl delete D0257C83-DB81-4567-93EC-4C6DF23DC24C
 
 script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
