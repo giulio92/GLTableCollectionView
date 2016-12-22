@@ -17,6 +17,6 @@ before_install:
     - gem clean
     - xcodebuild -version
     - xcodebuild -showsdks
-    - xcrun simctl delete DB794781-65A7-4884-8D00-AAC3CBD39A44
+    - xcrun simctl delete D0257C83-DB81-4567-93EC-4C6DF23DC24C
 
 script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
