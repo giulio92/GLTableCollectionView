@@ -17,6 +17,12 @@ before_install:
     - gem clean
     - xcodebuild -version
     - xcodebuild -showsdks
+
+    # This command will fix Travis CI duplicated simulators build issue
+    # happening while using Xcode 8.2 + iOS simulator 10.2 configuration. Be
+    # sure to check GitHub issue #7031
+    # (https://github.com/travis-ci/travis-ci/issues/7031) for updates and, as
+    # soon as the Travis team fix the issue, remove this line.
     - xcrun simctl delete D0257C83-DB81-4567-93EC-4C6DF23DC24C
 
 script: xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
