@@ -167,12 +167,19 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	// MARK: <UICollectionViewDelegate Flow Layout>
 
+	let collectionTopInset: CGFloat = 0
+	let collectionBottomInset: CGFloat = 0
+	let collectionLeftInset: CGFloat = 10
+	let collectionRightInset: CGFloat = 10
+
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsetsMake(0, 10, 0, 10)
+		return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: 65, height: 65)
+		let tableViewCellHeight: CGFloat = tableView.rowHeight
+
+		return CGSize(width: tableViewCellHeight - (collectionLeftInset + collectionRightInset), height: tableViewCellHeight - (collectionLeftInset + collectionRightInset))
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
