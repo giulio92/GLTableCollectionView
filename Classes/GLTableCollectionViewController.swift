@@ -178,8 +178,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let tableViewCellHeight: CGFloat = tableView.rowHeight
+		let collectionItemWidth: CGFloat = tableViewCellHeight - (collectionLeftInset + collectionRightInset)
+		let collectionViewHeight: CGFloat = collectionItemWidth
 
-		return CGSize(width: tableViewCellHeight - (collectionLeftInset + collectionRightInset), height: tableViewCellHeight - (collectionLeftInset + collectionRightInset))
+		return CGSize(width: collectionItemWidth, height: collectionViewHeight)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
