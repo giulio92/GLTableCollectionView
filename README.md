@@ -6,8 +6,8 @@
 
 |**Branch**|**Status**|
 |:--------:|:--------:|
-|master|![masterCIStatus](https://travis-ci.org/giulio92/GLTableCollectionView.svg?branch=master)|
-|develop|![developCIStatus](https://travis-ci.org/giulio92/GLTableCollectionView.svg?branch=develop)|
+|master|[![masterCIStatus](https://travis-ci.org/giulio92/GLTableCollectionView.svg?branch=master)](https://travis-ci.org/giulio92/GLTableCollectionView/branches)|
+|develop|[![developCIStatus](https://travis-ci.org/giulio92/GLTableCollectionView.svg?branch=develop)](https://travis-ci.org/giulio92/GLTableCollectionView/branches)|
 
 ![Language](https://img.shields.io/badge/language-Swift%203.0-orange.svg)
 ![Supported platforms](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
