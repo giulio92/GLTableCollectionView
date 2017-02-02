@@ -53,7 +53,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// Note: This will only cover horizonal scrolling and pagination, if you
 		// need vertical pagination replace the .x coordinate with .y and update
 		// collectionViewInsets value with the approriate one.
-		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
+		let proposedXCoordWithInsets: CGFloat = proposedContentOffset.x + collectionViewInsets
 
 		// We now create a variable and we assign a very high CGFloat to it (a
 		// big number here is needed to cover very large
@@ -67,7 +67,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// cell which needs the least offsetCorrection value: it will mean that
 		// it's the first cell on the left of the screen which will give
 		// pagination.
-		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
+		for layoutAttributes: UICollectionViewLayoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
 			// Since layoutAttributesForElements may contain all sort of layout
 			// attributes we need to check if it belongs to a
 			// UICollectionViewCell, otherwise logic won't work.
