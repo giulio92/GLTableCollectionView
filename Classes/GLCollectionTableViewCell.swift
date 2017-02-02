@@ -41,7 +41,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
-		// To make paginated scrolling work fine this CGFloat below must be
+		// To make paginated scrolling work fine this CGFloat below MUST be
 		// equal to the value set in the insetForSectionAt method of
 		// UICollectionView's UICollectionViewDelegate Flow Layout.
 		let collectionViewInsets: CGFloat = 10.0
@@ -110,7 +110,8 @@ class GLCollectionTableViewCell: UITableViewCell {
 	`delegate` methods. 
 	
 	GLIndexedCollectionView requires a `strong` ARC reference, do not assign a
-	`weak` reference otherwise it could result in a crash.
+	`weak` reference to it otherwise it could be released unexpectedly,
+	causing a crash.
 
 	*/
 	var collectionView: GLIndexedCollectionView!
@@ -186,7 +187,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	Re-assigns `dataSource` and `delegate` classes back to the
 	GLIndexedCollectionView inside GLCollectionTableViewCell.
 
-	It's highly recommended to call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
+	It's highly recommended to call this `func` in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
 	method of GLTableCollectionViewController so the UITableView will re-assign
 	it automatically following the regular UITableViewCells reuse logic.
 
