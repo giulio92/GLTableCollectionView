@@ -208,7 +208,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	will come from.
 
 	*/
-	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
+	func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
 
 		if collectionView.dataSource == nil {

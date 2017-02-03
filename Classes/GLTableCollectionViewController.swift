@@ -143,7 +143,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 			return
 		}
 
-		cell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, indexPath: indexPath)
+		cell.setCollectionView(dataSource: self, delegate: self, indexPath: indexPath)
 	}
 
 	// MARK: <UICollectionView Data Source>
