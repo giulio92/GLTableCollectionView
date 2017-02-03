@@ -6,25 +6,25 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2016 Giulio Lombardo
+//  Copyright (c) 2017 Giulio Lombardo
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
+//  of this software and associated documentation files (the "Software"), to
+//  deal in the Software without restriction, including without limitation the
+//  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+//  sell copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+//  IN THE SOFTWARE.
 //
 
 import UIKit
@@ -41,7 +41,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
-		// To make paginated scrolling work fine this CGFloat below must be
+		// To make paginated scrolling work fine this CGFloat below MUST be
 		// equal to the value set in the insetForSectionAt method of
 		// UICollectionView's UICollectionViewDelegate Flow Layout.
 		let collectionViewInsets: CGFloat = 10.0
@@ -53,7 +53,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// Note: This will only cover horizonal scrolling and pagination, if you
 		// need vertical pagination replace the .x coordinate with .y and update
 		// collectionViewInsets value with the approriate one.
-		let proposedXCoordWithInsets = proposedContentOffset.x + collectionViewInsets
+		let proposedXCoordWithInsets: CGFloat = proposedContentOffset.x + collectionViewInsets
 
 		// We now create a variable and we assign a very high CGFloat to it (a
 		// big number here is needed to cover very large
@@ -67,7 +67,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// cell which needs the least offsetCorrection value: it will mean that
 		// it's the first cell on the left of the screen which will give
 		// pagination.
-		for layoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
+		for layoutAttributes: UICollectionViewLayoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
 			// Since layoutAttributesForElements may contain all sort of layout
 			// attributes we need to check if it belongs to a
 			// UICollectionViewCell, otherwise logic won't work.
@@ -110,7 +110,8 @@ class GLCollectionTableViewCell: UITableViewCell {
 	`delegate` methods. 
 	
 	GLIndexedCollectionView requires a `strong` ARC reference, do not assign a
-	`weak` reference otherwise it could result in a crash.
+	`weak` reference to it otherwise it could be released unexpectedly,
+	causing a crash.
 
 	*/
 	var collectionView: GLIndexedCollectionView!
@@ -186,7 +187,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	Re-assigns `dataSource` and `delegate` classes back to the
 	GLIndexedCollectionView inside GLCollectionTableViewCell.
 
-	It's highly recommended to call this func in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
+	It's highly recommended to call this `func` in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
 	method of GLTableCollectionViewController so the UITableView will re-assign
 	it automatically following the regular UITableViewCells reuse logic.
 
@@ -207,7 +208,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 	will come from.
 
 	*/
-	func setCollectionViewDataSourceDelegate(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
+	func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
 
 		if collectionView.dataSource == nil {
