@@ -17,7 +17,7 @@
 ## What it is
 GLTableCollectionView is a ready to use `UITableViewController` with a `UICollectionView` for each `UITableViewCell`, something like Netflix, Airbnb or the Apple's App Store are doing in their iOS apps. GLTableCollectionView is completely customizable in both his UITableView and UICollectionView parts since it has been made on the same Data Source and Delegate methods with no complicated additions.
 
-|          |  ***GLTableCollectionView***  |
+|          |  GLTableCollectionView  |
 |----------|-------------------------------|
 🔄|The **same** `UITableView` reusable cells logic provided from Apple's implementation
 ♻️|`UICollectionView` cell recycle
