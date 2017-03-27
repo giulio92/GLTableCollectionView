@@ -141,7 +141,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Delegate>
 
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		guard let cell = cell as? GLCollectionTableViewCell else {
+		guard let cell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
 			return
 		}
 
