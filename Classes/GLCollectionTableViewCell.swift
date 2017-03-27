@@ -50,9 +50,9 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// won't take count of any UICollectionView UIEdgeInsets values we need
 		// to fix it by adding collectionViewInsets to the .x coordinate.
 		//
-		// Note: This will only cover horizonal scrolling and pagination, if you
+		// Note: This will only cover horizontal scrolling and pagination, if you
 		// need vertical pagination replace the .x coordinate with .y and update
-		// collectionViewInsets value with the approriate one.
+		// collectionViewInsets value with the appropriate one.
 		let proposedXCoordWithInsets: CGFloat = proposedContentOffset.x + collectionViewInsets
 
 		// We now create a variable and we assign a very high CGFloat to it (a
@@ -122,8 +122,8 @@ class GLCollectionTableViewCell: UITableViewCell {
 	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
 	the GLIndexedCollectionView will paginate scrolling or not.
 
-	Set to [true]() to make the UICollectionView paginate scrolling based on
-	it's `itemSize`, set to [false]() for regular scrolling. The
+	Set [true]() to make the UICollectionView paginate scrolling based on it's
+	`itemSize`, set to [false]() for regular scrolling. The
 	`UICollectionViewFlowLayout` will deduct the appropriate scrolling offset
 	values automatically and you should not set the `itemSize` value directly.
 
