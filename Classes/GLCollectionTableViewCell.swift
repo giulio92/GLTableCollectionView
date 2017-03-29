@@ -67,13 +67,35 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// cell which needs the least offsetCorrection value: it will mean that
 		// it's the first cell on the left of the screen which will give
 		// pagination.
-		for layoutAttributes: UICollectionViewLayoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
-			// Since layoutAttributesForElements may contain all sort of layout
-			// attributes we need to check if it belongs to a
+		for layoutAttribute: UICollectionViewLayoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
+			// layoutAttributesForElements may contain all sort of layout
+			// attributes so we need to check if it belongs to a
 			// UICollectionViewCell, otherwise logic won't work.
-			if layoutAttributes.representedElementCategory == .cell {
-				if abs(layoutAttributes.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
-					offsetCorrection = layoutAttributes.frame.origin.x - proposedXCoordWithInsets
+			if layoutAttribute.representedElementCategory == .cell {
+				// Since UICollectionViewFlowLayout's UICollectionView comes in
+				// an Optional flavour and we will need to get it's frame size
+				// down below, it's not a bad idea to shield us from those very
+				// strange cases in which the UICollectionView won't be there
+				// (for whatever reason) and exit the loop since it is useless
+				// to calculate an offsetCorrection for a non-existent
+				// UICollectionView.
+				guard let collectionView = collectionView else {
+					break
+				}
+
+				// To accurately calculate the offsetCorrection we will check
+				// only the cells contained in one half of UICollectionView's
+				// width, following the scrolling direction. The check will be
+				// done by the if statement below.
+				// This will fix the "last cell" issue.
+				let discardableScrollingElementsFrame: CGFloat = collectionView.contentOffset.x + (collectionView.frame.size.width / 2)
+
+				if (layoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) || (layoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
+					continue
+				}
+
+				if abs(layoutAttribute.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
+					offsetCorrection = layoutAttribute.frame.origin.x - proposedXCoordWithInsets
 				}
 			} else {
 				// Elements different from UICollectionViewCell will fall here.
@@ -89,9 +111,8 @@ class GLIndexedCollectionView: UICollectionView {
 
 	The inner-`indexPath` of the GLIndexedCollectionView.
 
-	You can use it to discriminate between all the possible
-	GLIndexedCollectionViews inside UICollectionView's `dataSource` and
-	`delegate` methods.
+	Use it to discriminate between all the possible GLIndexedCollectionViews
+	inside UICollectionView's `dataSource` and `delegate` methods.
 
 	This should be set and updated only through GLCollectionTableViewCell's
 	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors.
@@ -120,14 +141,14 @@ class GLCollectionTableViewCell: UITableViewCell {
 	/**
 
 	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
-	the GLIndexedCollectionView will paginate scrolling or not.
+	the GLIndexedCollectionView will paginate scroll or not.
 
-	Set [true]() to make the UICollectionView paginate scrolling based on it's
+	Set [true]() to make the UICollectionView paginate scroll based on it's
 	`itemSize`, set to [false]() for regular scrolling. The
-	`UICollectionViewFlowLayout` will deduct the appropriate scrolling offset
-	values automatically and you should not set the `itemSize` value directly.
+	`UICollectionViewFlowLayout` will deduct the right scrolling offset values
+	automatically so you should not set the `itemSize` value directly.
 
-	Default value is `nil`, since this `Bool` is `Optional`.
+	Default value is `nil`, since `Bool` is `Optional`.
 
 	*/
 	var collectionViewPaginatedScroll: Bool?
