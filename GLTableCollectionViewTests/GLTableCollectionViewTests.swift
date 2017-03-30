@@ -141,7 +141,7 @@ class GLTableCollectionViewTests: XCTestCase {
 				              "If custom paginated scroll is enabled the UICollectionView should be scrollable")
 
 				XCTAssertTrue(collectionTableCell.collectionView.isUserInteractionEnabled,
-				              "If custom paginated scroll is enabled the UICollectionView shoud be user interactive")
+				              "If custom paginated scroll is enabled the UICollectionView should be user interactive")
 			}
 		}
 	}

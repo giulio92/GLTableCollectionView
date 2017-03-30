@@ -34,7 +34,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// holding the UICollectionView, it's important to append "_section#" to it
 	// so we can understand which cell is the one we are looking for in the
 	// debugger. Look in UITableView's data source cellForRowAt method for more
-	// explainations about the UITableViewCell reuse handling.
+	// explanations about the UITableViewCell reuse handling.
 	let tableCellID: String = "tableViewCellID_section_#"
 	let collectionCellID: String = "collectionViewCellID"
 
@@ -100,7 +100,9 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// dequeueReusableCell of that section.
 		//
 		// For example the cellIdentifier for section 4 cells will be:
+		//
 		// "tableViewCellID_section_#3"
+		//
 		// dequeueReusableCell will only reuse previous UITableViewCells with
 		// the same cellIdentifier instead of using any UITableViewCell as a
 		// regular UITableView would do, this is necessary because every cell
@@ -139,7 +141,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UITableView Delegate>
 
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		guard let cell = cell as? GLCollectionTableViewCell else {
+		guard let cell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
 			return
 		}
 

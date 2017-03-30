@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -149,6 +149,7 @@
 		747CF8F11DE6EB010051A5FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = GL;
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Giulio Lombardo";
@@ -165,7 +166,7 @@
 				};
 			};
 			buildConfigurationList = 747CF8F41DE6EB010051A5FF /* Build configuration list for PBXProject "GLTableCollectionView" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
