@@ -126,6 +126,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		return "Section: " + section.description
 	}
 
+	// MARK: <UITableView Delegate>
+
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 88
 	}
@@ -137,8 +139,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 		return 0.0001
 	}
-
-	// MARK: <UITableView Delegate>
 
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		guard let cell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
