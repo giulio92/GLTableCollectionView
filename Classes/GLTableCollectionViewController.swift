@@ -66,7 +66,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
 
-				if (randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0) {
+				if randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0 {
 					randomRed = CGFloat(arc4random_uniform(128))
 				}
 
@@ -175,7 +175,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	let collectionRightInset: CGFloat = 10
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+		return UIEdgeInsets(top: collectionTopInset, left: collectionLeftInset, bottom: collectionBottomInset, right: collectionRightInset)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -197,7 +197,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UICollectionView Delegate>
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		
+
 	}
 
     /*

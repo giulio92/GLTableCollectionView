@@ -106,7 +106,7 @@ class GLTableCollectionViewTests: XCTestCase {
 
 		for tableViewCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
 			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0,
-			              "GLCollectionTableViewCell cellIdentifier was: \(tableViewCell.reuseIdentifier)\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
+			              "GLCollectionTableViewCell cellIdentifier was: \(String(describing: tableViewCell.reuseIdentifier))\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
 		}
 	}
 
