@@ -2,7 +2,10 @@
 disabled_rules:
   - line_length
 
+# some rules are only opt-in
 opt_in_rules:
+# Find all the available rules by running:
+# swiftlint rules
   
 
 # paths to include during linting. `--path` is ignored if present.
