@@ -159,10 +159,16 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
+		guard let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as? GLIndexedCollectionViewCell else {
+			fatalError("UICollectionViewCell must be of GLIndexedCollectionViewCell type")
+		}
+
+		guard let indexedCollectionView: GLIndexedCollectionView = collectionView as? GLIndexedCollectionView else {
+			fatalError("UICollectionView must be of GLIndexedCollectionView type")
+		}
 
 		// Configure the cell...
-		cell.backgroundColor = colorsDict[(collectionView as! GLIndexedCollectionView).indexPath.section]?[indexPath.row]
+		cell.backgroundColor = colorsDict[indexedCollectionView.indexPath.section]?[indexPath.row]
 
 		return cell
 	}
@@ -200,14 +206,14 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 
 	}
 
-    /*
-    // MARK: <Navigation>
+	/*
+	// MARK: <Navigation>
 
-    // In a storyboard-based application, you will often want to do a little
+	// In a storyboard-based application, you will often want to do a little
 	// preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	// Get the new view controller using segue.destinationViewController.
+	// Pass the selected object to the new view controller.
+	}
+	*/
 }
