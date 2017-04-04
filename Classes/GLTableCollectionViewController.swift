@@ -29,23 +29,23 @@
 
 import UIKit
 
-class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-	// This string constant will be the cellIdentifier for the UITableViewCells
-	// holding the UICollectionView, it's important to append "_section#" to it
-	// so we can understand which cell is the one we are looking for in the
-	// debugger. Look in UITableView's data source cellForRowAt method for more
-	// explanations about the UITableViewCell reuse handling.
-	let tableCellID: String = "tableViewCellID_section_#"
-	let collectionCellID: String = "collectionViewCellID"
+final class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+	// This static string constant will be the cellIdentifier for the
+	// UITableViewCells holding the UICollectionView, it's important to append
+	// "_section#" to it so we can understand which cell is the one we are
+	// looking for in the debugger. Look in UITableView's data source
+	// cellForRowAt method for more explanations about the UITableViewCell reuse
+	// handling.
+	private static let tableCellID: String = "tableViewCellID_section_#"
 
-	let numberOfSections: Int = 20
-	let numberOfCollectionsForRow: Int = 1
-	let numberOfCollectionItems: Int = 20
+	private let numberOfSections: Int = 20
+	private let numberOfCollectionsForRow: Int = 1
+	private let numberOfCollectionItems: Int = 20
 
-	var colorsDict: [Int: [UIColor]] = [:]
+	private var colorsDict: [Int: [UIColor]] = [:]
 
 	/// Set true to enable UICollectionViews scroll pagination
-	var paginationEnabled: Bool = true
+	private var paginationEnabled: Bool = true
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -109,10 +109,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// will have a different UICollectionView with UICollectionViewCells in
 		// it and UITableView reuse won't work as expected giving back wrong
 		// cells.
-		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
+		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
 
 		if cell == nil {
-			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: tableCellID + indexPath.section.description)
+			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description)
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
@@ -159,7 +159,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as? GLIndexedCollectionViewCell else {
+		guard let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: GLIndexedCollectionViewCell.identifier, for: indexPath) as? GLIndexedCollectionViewCell else {
 			fatalError("UICollectionViewCell must be of GLIndexedCollectionViewCell type")
 		}
 
