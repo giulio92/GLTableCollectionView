@@ -79,7 +79,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 				// (for whatever reason) and exit the loop since it is useless
 				// to calculate an offsetCorrection for a non-existent
 				// UICollectionView.
-				guard let collectionView = collectionView else {
+				guard let collectionView: UICollectionView = collectionView else {
 					break
 				}
 
