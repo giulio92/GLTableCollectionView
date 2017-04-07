@@ -30,7 +30,7 @@
 import UIKit
 
 class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-	var paginatedScroll: Bool?
+	fileprivate var paginatedScroll: Bool?
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
