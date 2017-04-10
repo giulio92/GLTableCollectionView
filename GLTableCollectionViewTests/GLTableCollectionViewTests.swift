@@ -58,17 +58,14 @@ class GLTableCollectionViewTests: XCTestCase {
 		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0,
 		                     "numberOfCollectionItems was: \(tableCollectionView.numberOfCollectionItems)\nThere must be at least one GLIndexedCollectionViewCell")
 
-		XCTAssertNotEqual(tableCollectionView.tableCellID, "",
-		                  "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must not be empty")
+		XCTAssertNotEqual(GLTableCollectionViewController.tableCellID, "",
+		                  "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must not be empty")
 
-		XCTAssertTrue(tableCollectionView.tableCellID.hasSuffix("_section_#"),
-		              "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must end with section number suffix")
+		XCTAssertTrue(GLTableCollectionViewController.tableCellID.hasSuffix("_section_#"),
+		              "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must end with section number suffix")
 
-		XCTAssertTrue((tableCollectionView.tableCellID.components(separatedBy: "#").count - 1) == 1,
-		              "tableCellID was: \(tableCollectionView.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
-
-		XCTAssertNotEqual(tableCollectionView.collectionCellID, "",
-		                  "The cellIdentifier for the UICollectionCells should not be empty")
+		XCTAssertTrue((GLTableCollectionViewController.tableCellID.components(separatedBy: "#").count - 1) == 1,
+		              "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
 	}
 
 	func testRandomColorsGeneration() {

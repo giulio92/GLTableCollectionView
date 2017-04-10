@@ -36,16 +36,16 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 	// looking for in the debugger. Look in UITableView's data source
 	// cellForRowAt method for more explanations about the UITableViewCell reuse
 	// handling.
-	private static let tableCellID: String = "tableViewCellID_section_#"
+	static let tableCellID: String = "tableViewCellID_section_#"
 
-	private let numberOfSections: Int = 20
-	private let numberOfCollectionsForRow: Int = 1
-	private let numberOfCollectionItems: Int = 20
+	let numberOfSections: Int = 20
+	let numberOfCollectionsForRow: Int = 1
+	let numberOfCollectionItems: Int = 20
 
-	private var colorsDict: [Int: [UIColor]] = [:]
+	var colorsDict: [Int: [UIColor]] = [:]
 
 	/// Set true to enable UICollectionViews scroll pagination
-	private var paginationEnabled: Bool = true
+	var paginationEnabled: Bool = true
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
