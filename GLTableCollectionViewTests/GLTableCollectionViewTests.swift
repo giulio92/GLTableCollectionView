@@ -152,7 +152,11 @@ final class GLTableCollectionViewTests: XCTestCase {
 	func testCollectionViewPaginationConsistency() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+		visibleCells.forEach { cell in
+			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
 			if collectionTableCell.collectionViewPaginatedScroll == true {
 				XCTAssertTrue(collectionTableCell.collectionView.isScrollEnabled,
 				              "If custom paginated scroll is enabled the UICollectionView should be scrollable")
