@@ -30,9 +30,9 @@
 import XCTest
 @testable import GLTableCollectionView
 
-class GLTableCollectionViewTests: XCTestCase {
-	var tableCollectionView: GLTableCollectionViewController!
-	var visibleCells: [UITableViewCell]!
+final class GLTableCollectionViewTests: XCTestCase {
+	private var tableCollectionView: GLTableCollectionViewController!
+	private var visibleCells: [UITableViewCell]!
 
 	override func setUp() {
 		super.setUp()
@@ -48,7 +48,7 @@ class GLTableCollectionViewTests: XCTestCase {
 
 	// MARK: <GLTableCollectionViewController>
 
-	func testInstanceVariables() {
+	private func testInstanceVariables() {
 		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0,
 		                     "numberOfSections was: \(tableCollectionView.numberOfSections)\nUITableView must have at least one section")
 
@@ -68,7 +68,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		              "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
 	}
 
-	func testRandomColorsGeneration() {
+	private func testRandomColorsGeneration() {
 		let colorsDictionary: [Int: [UIColor]] = tableCollectionView.colorsDict
 
 		XCTAssertNotNil(colorsDictionary, "Colors dictionary is nil")
@@ -82,15 +82,15 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testTableViewDataSource() {
+	private func testTableViewDataSource() {
 		XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
 	}
 
-	func testTableViewDelegate() {
+	private func testTableViewDelegate() {
 		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
 	}
 
-	func testUITableViewCellClasses() {
+	private func testUITableViewCellClasses() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for tableViewCell in visibleCells {
@@ -98,7 +98,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testTableViewCellIdentifiers() {
+	private func testTableViewCellIdentifiers() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for tableViewCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -109,7 +109,7 @@ class GLTableCollectionViewTests: XCTestCase {
 
 	// MARK: <GLCollectionTableViewCell>
 
-	func testCollectionViewsDelegateAndDataSource() {
+	private func testCollectionViewsDelegateAndDataSource() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -118,7 +118,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testCollectionNativePaginationFlag() {
+	private func testCollectionNativePaginationFlag() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -129,7 +129,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testCollectionViewPaginationConsistency() {
+	private func testCollectionViewPaginationConsistency() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
@@ -143,7 +143,7 @@ class GLTableCollectionViewTests: XCTestCase {
 		}
 	}
 
-	func testCollectionViewCellHeights() {
+	private func testCollectionViewCellHeights() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
 		let tableViewCellHeight: CGFloat = tableCollectionView.tableView.rowHeight
@@ -154,7 +154,7 @@ class GLTableCollectionViewTests: XCTestCase {
 
 	// MARK: <Other>
 
-	func testOpaqueFlag() {
+	private func testOpaqueFlag() {
 		XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
 
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
