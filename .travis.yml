@@ -9,8 +9,8 @@ env:
         - DESTINATION="platform=iOS Simulator,OS=latest,name=iPhone 5"
 
 before_install:
-    - brew update
-    - brew upgrade
+    # - brew update
+    # - brew upgrade
     - gem update
     - gem install xcpretty
     - gem install xcpretty-travis-formatter

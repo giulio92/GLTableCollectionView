@@ -30,9 +30,9 @@
 import XCTest
 @testable import GLTableCollectionView
 
-class GLTableCollectionViewTests: XCTestCase {
-	var tableCollectionView: GLTableCollectionViewController!
-	var visibleCells: [UITableViewCell]!
+final class GLTableCollectionViewTests: XCTestCase {
+	private var tableCollectionView: GLTableCollectionViewController!
+	private var visibleCells: [UITableViewCell]!
 
 	override func setUp() {
 		super.setUp()
@@ -93,17 +93,29 @@ class GLTableCollectionViewTests: XCTestCase {
 	func testUITableViewCellClasses() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for tableViewCell in visibleCells {
-			XCTAssertTrue(tableViewCell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
+		visibleCells.forEach { cell in
+			if cell is GLCollectionTableViewCell {
+				return
+			} else {
+				XCTAssertTrue(cell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
+			}
 		}
 	}
 
 	func testTableViewCellIdentifiers() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for tableViewCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
-			XCTAssertTrue(Int(tableViewCell.reuseIdentifier!.components(separatedBy: "#").last!)! >= 0,
-			              "GLCollectionTableViewCell cellIdentifier was: \(String(describing: tableViewCell.reuseIdentifier))\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
+		visibleCells.forEach { cell in
+			guard let tableViewCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
+			guard let reuseID: String = tableViewCell.reuseIdentifier else {
+				fatalError("UITableViewCells must have a reuse identifier")
+			}
+
+			XCTAssertTrue(Int(reuseID.components(separatedBy: "#").last!)! >= 0,
+			              "GLCollectionTableViewCell cellIdentifier was: \(String(describing: reuseID))\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
 		}
 	}
 
@@ -112,7 +124,11 @@ class GLTableCollectionViewTests: XCTestCase {
 	func testCollectionViewsDelegateAndDataSource() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+		visibleCells.forEach { cell in
+			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
 			XCTAssertNotNil(collectionTableCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
 			XCTAssertNotNil(collectionTableCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
 		}
@@ -121,7 +137,11 @@ class GLTableCollectionViewTests: XCTestCase {
 	func testCollectionNativePaginationFlag() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+		visibleCells.forEach { cell in
+			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
 			if collectionTableCell.collectionViewPaginatedScroll == true {
 				XCTAssertFalse(collectionTableCell.collectionView.isPagingEnabled,
 				               "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
@@ -132,7 +152,11 @@ class GLTableCollectionViewTests: XCTestCase {
 	func testCollectionViewPaginationConsistency() {
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+		visibleCells.forEach { cell in
+			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
 			if collectionTableCell.collectionViewPaginatedScroll == true {
 				XCTAssertTrue(collectionTableCell.collectionView.isScrollEnabled,
 				              "If custom paginated scroll is enabled the UICollectionView should be scrollable")
@@ -159,7 +183,11 @@ class GLTableCollectionViewTests: XCTestCase {
 
 		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		for collectionTableCell: GLCollectionTableViewCell in visibleCells as! [GLCollectionTableViewCell] {
+		visibleCells.forEach { cell in
+			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+				fatalError("UITableViewCells must be GLCollectionTableViewCell")
+			}
+
 			XCTAssertTrue(collectionTableCell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performances")
 		}
 	}
