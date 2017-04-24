@@ -30,14 +30,37 @@
 import UIKit
 
 class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-	var paginatedScroll: Bool?
+	fileprivate var paginatedScroll: Bool?
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+		// If the UICollectionView has paginatedScroll set to false there is no
+		// need to apply any pagination logic, so we simply return the current
+		// proposedContentOffset coordinates.
 		guard paginatedScroll == true else {
+			return CGPoint(x: proposedContentOffset.x, y: 0)
+		}
+
+		// It's not a bad idea to shield us for some strange cases where the
+		// UICollectionView won't be there for any reason, since it comes in an
+		// Optional flavor. If the UICollectionView won't be available we return
+		// the current proposedContentOffset coordinates and exit.
+		guard let collectionView: UICollectionView = collectionView else {
+			return CGPoint(x: proposedContentOffset.x, y: 0)
+		}
+
+		let scannerFrame: CGRect = CGRect(x: proposedContentOffset.x,
+		                                  y: 0,
+		                                  width: collectionView.bounds.width,
+		                                  height: collectionView.bounds.height)
+
+		// If there is no UICollectionViewLayoutAttributes for the given
+		// scannerFrame there is no reason to calculate a paginated layout for
+		// it, so we the current proposedContentOffset coordinates.
+		guard let layoutAttributes: [UICollectionViewLayoutAttributes] = super.layoutAttributesForElements(in: scannerFrame) else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
 
@@ -46,19 +69,19 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// UICollectionView's UICollectionViewDelegate Flow Layout.
 		let collectionViewInsets: CGFloat = 10.0
 
-		// Since UICollectionViewFlowLayout proposedContentOffset coordinates
+		// Since UICollectionViewFlowLayout's proposedContentOffset coordinates
 		// won't take count of any UICollectionView UIEdgeInsets values we need
 		// to fix it by adding collectionViewInsets to the .x coordinate.
 		//
-		// Note: This will only cover horizontal scrolling and pagination, if you
-		// need vertical pagination replace the .x coordinate with .y and update
-		// collectionViewInsets value with the appropriate one.
+		// Note: This will only cover horizontal scrolling and pagination, if
+		// you need vertical pagination replace the .x coordinate with .y and
+		// update collectionViewInsets value with the appropriate one.
 		let proposedXCoordWithInsets: CGFloat = proposedContentOffset.x + collectionViewInsets
 
 		// We now create a variable and we assign a very high CGFloat to it (a
-		// big number here is needed to cover very large
-		// UICollectionViewContentSize cases). This var will hold the needed
-		// horizontal adjustment to make the UICollectionView paginate scroll.
+		// to cover very large UICollectionViewContentSize cases).
+		// This var will hold the needed horizontal adjustment to make the
+		// UICollectionView paginate scroll.
 		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
 
 		// Now we loop through all the different layout attributes of the
@@ -67,22 +90,11 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// cell which needs the least offsetCorrection value: it will mean that
 		// it's the first cell on the left of the screen which will give
 		// pagination.
-		for layoutAttribute: UICollectionViewLayoutAttributes in super.layoutAttributesForElements(in: CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height: collectionView!.bounds.height))! {
-			// layoutAttributesForElements may contain all sort of layout
+		layoutAttributes.forEach { (layoutAttribute) in
+			// UICollectionViewLayoutAttributes may contain all sort of layout
 			// attributes so we need to check if it belongs to a
 			// UICollectionViewCell, otherwise logic won't work.
 			if layoutAttribute.representedElementCategory == .cell {
-				// Since UICollectionViewFlowLayout's UICollectionView comes in
-				// an Optional flavour and we will need to get it's frame size
-				// down below, it's not a bad idea to shield us from those very
-				// strange cases in which the UICollectionView won't be there
-				// (for whatever reason) and exit the loop since it is useless
-				// to calculate an offsetCorrection for a non-existent
-				// UICollectionView.
-				guard let collectionView = collectionView else {
-					break
-				}
-
 				// To accurately calculate the offsetCorrection we will check
 				// only the cells contained in one half of UICollectionView's
 				// width, following the scrolling direction. The check will be
@@ -91,7 +103,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 				let discardableScrollingElementsFrame: CGFloat = collectionView.contentOffset.x + (collectionView.frame.size.width / 2)
 
 				if (layoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) || (layoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
-					continue
+					return
 				}
 
 				if abs(layoutAttribute.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
@@ -160,7 +172,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		collectionFlowLayout.scrollDirection = .horizontal
 
 		collectionView = GLIndexedCollectionView(frame: .zero, collectionViewLayout: collectionFlowLayout)
-		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionViewCellID")
+		collectionView.register(UINib(nibName: "GLIndexedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: GLIndexedCollectionViewCell.identifier)
 		collectionView.backgroundColor = .white
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.showsVerticalScrollIndicator = false

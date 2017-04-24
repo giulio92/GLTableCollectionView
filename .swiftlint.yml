@@ -1,0 +1,21 @@
+# rule identifiers to exclude from running
+disabled_rules:
+  - line_length
+
+# some rules are only opt-in
+opt_in_rules:
+# Find all the available rules by running:
+# swiftlint rules
+  
+
+# paths to include during linting. `--path` is ignored if present.
+included:
+  
+
+# paths to ignore during linting. Takes precedence over `included`.
+excluded:
+  
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level  
+force_cast: warning

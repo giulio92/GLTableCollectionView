@@ -50,6 +50,7 @@ var paginationEnabled: Bool = true
 - Xcode 8.0+
 - Swift 3.0+
 - iOS 8.0+
+- [SwiftLint](https://github.com/realm/SwiftLint) (Optional, but _highly_ suggested)
 
 ## Note
 GLTableCollectionView is written using Swift 3.0 so it would only support iOS 8.0+ due to Swift 3 language compatibility, if you use Swift 2.0 in your project or you need iOS 7.0+ compatibility GLTableCollectionView will work too, but you **must** convert `UITableView` and `UICollectionView` Data Source and Delegate methods signatures before building your code or Xcode won't compile.

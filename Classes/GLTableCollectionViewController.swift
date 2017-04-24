@@ -29,14 +29,14 @@
 
 import UIKit
 
-class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-	// This string constant will be the cellIdentifier for the UITableViewCells
-	// holding the UICollectionView, it's important to append "_section#" to it
-	// so we can understand which cell is the one we are looking for in the
-	// debugger. Look in UITableView's data source cellForRowAt method for more
-	// explanations about the UITableViewCell reuse handling.
-	let tableCellID: String = "tableViewCellID_section_#"
-	let collectionCellID: String = "collectionViewCellID"
+final class GLTableCollectionViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+	// This static string constant will be the cellIdentifier for the
+	// UITableViewCells holding the UICollectionView, it's important to append
+	// "_section#" to it so we can understand which cell is the one we are
+	// looking for in the debugger. Look in UITableView's data source
+	// cellForRowAt method for more explanations about the UITableViewCell reuse
+	// handling.
+	static let tableCellID: String = "tableViewCellID_section_#"
 
 	let numberOfSections: Int = 20
 	let numberOfCollectionsForRow: Int = 1
@@ -66,7 +66,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
 
-				if (randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0) {
+				if randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0 {
 					randomRed = CGFloat(arc4random_uniform(128))
 				}
 
@@ -109,10 +109,10 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		// will have a different UICollectionView with UICollectionViewCells in
 		// it and UITableView reuse won't work as expected giving back wrong
 		// cells.
-		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
+		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
 
 		if cell == nil {
-			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: tableCellID + indexPath.section.description)
+			cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description)
 
 			// Configure the cell...
 			cell!.selectionStyle = .none
@@ -126,6 +126,8 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 		return "Section: " + section.description
 	}
 
+	// MARK: <UITableView Delegate>
+
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 88
 	}
@@ -137,8 +139,6 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 		return 0.0001
 	}
-
-	// MARK: <UITableView Delegate>
 
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		guard let cell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
@@ -159,10 +159,16 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellID, for: indexPath) as! GLIndexedCollectionViewCell
+		guard let cell: GLIndexedCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: GLIndexedCollectionViewCell.identifier, for: indexPath) as? GLIndexedCollectionViewCell else {
+			fatalError("UICollectionViewCell must be of GLIndexedCollectionViewCell type")
+		}
+
+		guard let indexedCollectionView: GLIndexedCollectionView = collectionView as? GLIndexedCollectionView else {
+			fatalError("UICollectionView must be of GLIndexedCollectionView type")
+		}
 
 		// Configure the cell...
-		cell.backgroundColor = colorsDict[(collectionView as! GLIndexedCollectionView).indexPath.section]?[indexPath.row]
+		cell.backgroundColor = colorsDict[indexedCollectionView.indexPath.section]?[indexPath.row]
 
 		return cell
 	}
@@ -175,7 +181,7 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	let collectionRightInset: CGFloat = 10
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsetsMake(collectionTopInset, collectionLeftInset, collectionBottomInset, collectionRightInset)
+		return UIEdgeInsets(top: collectionTopInset, left: collectionLeftInset, bottom: collectionBottomInset, right: collectionRightInset)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -197,17 +203,17 @@ class GLTableCollectionViewController: UITableViewController, UICollectionViewDa
 	// MARK: <UICollectionView Delegate>
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		
+
 	}
 
-    /*
-    // MARK: <Navigation>
+	/*
+	// MARK: <Navigation>
 
-    // In a storyboard-based application, you will often want to do a little
+	// In a storyboard-based application, you will often want to do a little
 	// preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		// Get the new view controller using segue.destinationViewController.
+		// Pass the selected object to the new view controller.
+	}
+	*/
 }
