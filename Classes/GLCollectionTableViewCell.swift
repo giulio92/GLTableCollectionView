@@ -38,7 +38,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 		// If the UICollectionView has paginatedScroll set to false there is no
-		// need to apply any pagination logic, so we simply return the current
+		// need to apply any pagination logic, we will return the current
 		// proposedContentOffset coordinates.
 		guard paginatedScroll == true else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
@@ -46,8 +46,8 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 		// It's not a bad idea to shield us for some strange cases where the
 		// UICollectionView won't be there for any reason, since it comes in an
-		// Optional flavor. If the UICollectionView won't be available we return
-		// the current proposedContentOffset coordinates and exit.
+		// Optional flavor. If it won't be available we return the current
+		// proposedContentOffset coordinates and exit.
 		guard let collectionView: UICollectionView = collectionView else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
@@ -59,7 +59,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 		// If there is no UICollectionViewLayoutAttributes for the given
 		// scannerFrame there is no reason to calculate a paginated layout for
-		// it, so we the current proposedContentOffset coordinates.
+		// it, so we return the current proposedContentOffset coordinates.
 		guard let layoutAttributes: [UICollectionViewLayoutAttributes] = super.layoutAttributesForElements(in: scannerFrame) else {
 			return CGPoint(x: proposedContentOffset.x, y: 0)
 		}
@@ -84,33 +84,32 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 		// UICollectionView paginate scroll.
 		var offsetCorrection: CGFloat = .greatestFiniteMagnitude
 
-		// Now we loop through all the different layout attributes of the
-		// UICollectionViewCells contained between the .x value of the
-		// proposedContentOffset and collectionView's width, looking for the
-		// cell which needs the least offsetCorrection value: it will mean that
-		// it's the first cell on the left of the screen which will give
-		// pagination.
-		layoutAttributes.forEach { (layoutAttribute) in
-			// UICollectionViewLayoutAttributes may contain all sort of layout
-			// attributes so we need to check if it belongs to a
-			// UICollectionViewCell, otherwise logic won't work.
-			if layoutAttribute.representedElementCategory == .cell {
-				// To accurately calculate the offsetCorrection we will check
-				// only the cells contained in one half of UICollectionView's
-				// width, following the scrolling direction. The check will be
-				// done by the if statement below.
-				// This will fix the "last cell" issue.
-				let discardableScrollingElementsFrame: CGFloat = collectionView.contentOffset.x + (collectionView.frame.size.width / 2)
+		// UICollectionViewLayoutAttributes may contain all sort of layout
+		// attributes so we need to check if it belongs to a
+		// UICollectionViewCell, otherwise logic won't work.
+		layoutAttributes.filter { layoutAttribute -> Bool in
 
-				if (layoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) || (layoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
-					return
-				}
+			layoutAttribute.representedElementCategory == .cell
+		}.forEach { cellLayoutAttribute in
 
-				if abs(layoutAttribute.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
-					offsetCorrection = layoutAttribute.frame.origin.x - proposedXCoordWithInsets
-				}
-			} else {
-				// Elements different from UICollectionViewCell will fall here.
+			// Now we loop through all the different layout attributes of the
+			// UICollectionViewCells contained between the .x value of the
+			// proposedContentOffset and collectionView's width, looking for the
+			// cell which needs the least offsetCorrection value: it will mean
+			// that it's the first cell on the left of the screen which will
+			// give pagination.
+			// To accurately calculate the offsetCorrection we will check only
+			// the cells contained in one half of UICollectionView's width,
+			// following the scrolling direction. The check will be done by the
+			// if statement below. This will fix the "last cell" issue.
+			let discardableScrollingElementsFrame: CGFloat = collectionView.contentOffset.x + (collectionView.frame.size.width / 2)
+
+			if (cellLayoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) || (cellLayoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
+				return
+			}
+
+			if abs(cellLayoutAttribute.frame.origin.x - proposedXCoordWithInsets) < abs(offsetCorrection) {
+				offsetCorrection = cellLayoutAttribute.frame.origin.x - proposedXCoordWithInsets
 			}
 		}
 
@@ -119,50 +118,39 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 class GLIndexedCollectionView: UICollectionView {
-	/**
-
-	The inner-`indexPath` of the GLIndexedCollectionView.
-
-	Use it to discriminate between all the possible GLIndexedCollectionViews
-	inside UICollectionView's `dataSource` and `delegate` methods.
-
-	This should be set and updated only through GLCollectionTableViewCell's
-	`setCollectionViewDataSourceDelegate` func to avoid strange behaviors.
-
-	*/
+	/// The inner-`indexPath` of the GLIndexedCollectionView.
+	///
+	/// Use it to discriminate between all the possible GLIndexedCollectionViews
+	/// inside `UICollectionView`'s `dataSource` and `delegate` methods.
+	///
+	/// This should be set and updated only through GLCollectionTableViewCell's
+	/// `setCollectionViewDataSourceDelegate` func to avoid strange behaviors.
 	var indexPath: IndexPath!
 }
 
 class GLCollectionTableViewCell: UITableViewCell {
-	/**
-
-	The UICollectionView inside a UITableViewCell itself.
-
-	It's recommended to keep the variable `public` so it would be easier to
-	access later in the code, for example in UITableView's `dataSource` and
-	`delegate` methods. 
-	
-	GLIndexedCollectionView requires a `strong` ARC reference, do not assign a
-	`weak` reference to it otherwise it could be released unexpectedly,
-	causing a crash.
-
-	*/
+	/// The `UICollectionView`-inside-a-`UITableViewCell` itself.
+	///
+	/// Keep the variable `public` so it would be easier to access later in the
+	/// code, for example in UITableView's `dataSource` and
+	/// `delegate` methods.
+	///
+	/// GLIndexedCollectionView requires a `strong` ARC reference, do not assign
+	/// a `weak` reference to it otherwise it could be released unexpectedly,
+	/// causing a crash.
 	var collectionView: GLIndexedCollectionView!
 	var collectionFlowLayout: GLIndexedCollectionViewFlowLayout!
 
-	/**
-
-	A Boolean value that controls whether the `UICollectionViewFlowLayout` of
-	the GLIndexedCollectionView will paginate scroll or not.
-
-	Set [true]() to make the UICollectionView paginate scroll based on it's
-	`itemSize`, set to [false]() for regular scrolling. The
-	`UICollectionViewFlowLayout` will deduct the right scrolling offset values
-	automatically so you should not set the `itemSize` value directly.
-
-	Default value is `nil`, since `Bool` is `Optional`.
-
-	*/
+	/// A Boolean value that controls whether the `UICollectionViewFlowLayout`
+	/// of the GLIndexedCollectionView will paginate scroll or not.
+	///
+	/// Set [true]() to make the UICollectionView paginate scroll based on it's
+	/// `itemSize`, set to [false]() for regular scrolling. The
+	/// `UICollectionViewFlowLayout` will deduct the right scrolling offset
+	/// values automatically so you should not set the `itemSize` value
+	/// directly.
+	///
+	/// Default value is `nil`, since `Bool` is `Optional`.
 	var collectionViewPaginatedScroll: Bool?
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -193,7 +181,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		// Initialization code
 	}
 
-	override func layoutSubviews() {
+	override final func layoutSubviews() {
 		super.layoutSubviews()
 
 		collectionFlowLayout.paginatedScroll = collectionViewPaginatedScroll
@@ -215,33 +203,30 @@ class GLCollectionTableViewCell: UITableViewCell {
 		// Configure the view for the selected state
 	}
 
-	/**
-
-	Re-assigns `dataSource` and `delegate` classes back to the
-	GLIndexedCollectionView inside GLCollectionTableViewCell.
-
-	It's highly recommended to call this `func` in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
-	method of GLTableCollectionViewController so the UITableView will re-assign
-	it automatically following the regular UITableViewCells reuse logic.
-
-	This method will also check if the re-assignment are needed or not.
-
-	- Parameter dataSource: The `dataSource` class for the
-	GLIndexedCollectionView in the GLCollectionTableViewCell, it will be
-	responsible for the UICollectionView's `dataSource` methods.
-
-	- Parameter delegate: The `delegate class` for the GLIndexedCollectionView
-	in the GLCollectionTableViewCell, it will be responsible for the
-	UICollectionView's delegation methods.
-
-	- Parameter indexPath: The inner-`indexPath` of the GLIndexedCollectionView,
-	it's recommended to pass the same `indexPath` of the UITableViewCell to the
-	GLIndexedCollectionView so they will share the same `indexPath.section`
-	making easier to understand from which UITableViewCell the UICollectionView
-	will come from.
-
-	*/
-	func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
+	/// Re-assigns `dataSource` and `delegate` classes back to the
+	/// GLIndexedCollectionView inside GLCollectionTableViewCell.
+	///
+	/// Call this `func` in your [tableView(_:willDisplay:forRowAt:)](apple-reference-documentation://hs3G9NleF7)
+	/// method of GLTableCollectionViewController so the UITableView will
+	/// re-assign it automatically following the regular UITableViewCells reuse
+	/// logic.
+	///
+	/// This method will also check if the re-assignment are needed or not.
+	///
+	/// - Parameter dataSource: The `dataSource` class for the
+	/// GLIndexedCollectionView in the GLCollectionTableViewCell, responsible
+	/// for the UICollectionView's `dataSource` methods.
+	///
+	/// - Parameter delegate: The `delegate class` for the
+	/// GLIndexedCollectionView in the GLCollectionTableViewCell, responsible
+	/// for the UICollectionView's delegation methods.
+	///
+	/// - Parameter indexPath: The inner-`indexPath` of the
+	/// GLIndexedCollectionView, it's recommended to pass the same `indexPath`
+	/// of the UITableViewCell to the GLIndexedCollectionView so they will share
+	/// the same `indexPath.section` making easier to understand from which
+	/// UITableViewCell the UICollectionView will come from.
+	final func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
 		collectionView.indexPath = indexPath
 
 		if collectionView.dataSource == nil {
