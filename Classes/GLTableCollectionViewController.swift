@@ -109,6 +109,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 		// will have a different UICollectionView with UICollectionViewCells in
 		// it and UITableView reuse won't work as expected giving back wrong
 		// cells.
+
 		var cell: GLCollectionTableViewCell? = tableView.dequeueReusableCell(withIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description) as? GLCollectionTableViewCell
 
 		if cell == nil {
