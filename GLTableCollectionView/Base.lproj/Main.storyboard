@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,10 +14,11 @@
         <scene sceneID="MYD-pX-siV">
             <objects>
                 <tableViewController storyboardIdentifier="tableCollectionView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lzn-74-EiO" customClass="GLTableCollectionViewController" customModule="GLTableCollectionView" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="1" id="l3B-sn-hQc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="1" id="l3B-sn-hQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="9zB-mk-AEp"/>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="lzn-74-EiO" id="560-Iz-sbo"/>
@@ -36,6 +38,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fmK-uj-jX1">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <viewLayoutGuide key="safeArea" id="d4y-hh-Xxj"/>
                     </navigationBar>
                     <connections>
                         <segue destination="lzn-74-EiO" kind="relationship" relationship="rootViewController" id="7rc-7g-dv9"/>
