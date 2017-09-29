@@ -33,7 +33,7 @@ class GLIndexedCollectionViewCell: UICollectionViewCell {
 	static let identifier: String = "collectionViewCellID"
 
 	override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+		super.awakeFromNib()
+		// Initialization code
+	}
 }

@@ -70,7 +70,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 					randomRed = CGFloat(arc4random_uniform(128))
 				}
 
-				colorsArray.append(UIColor(red: randomRed/255.0, green: randomGreen/255.0, blue: randomBlue/255.0, alpha: 1.0))
+				colorsArray.append(UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0))
 			}
 
 			colorsDict[tableViewSection] = colorsArray
@@ -207,7 +207,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 	}
 
 	/*
-	// MARK: <Navigation>
+	 // MARK: <Navigation>
 
 	// In a storyboard-based application, you will often want to do a little
 	// preparation before navigation

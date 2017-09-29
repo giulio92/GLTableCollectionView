@@ -181,7 +181,7 @@ class GLCollectionTableViewCell: UITableViewCell {
 		// Initialization code
 	}
 
-	override final func layoutSubviews() {
+	final override func layoutSubviews() {
 		super.layoutSubviews()
 
 		collectionFlowLayout.paginatedScroll = collectionViewPaginatedScroll
