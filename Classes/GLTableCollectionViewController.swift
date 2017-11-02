@@ -61,7 +61,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 		for tableViewSection in 0..<numberOfSections {
 			var colorsArray: [UIColor] = []
 
-			for _ in 0..<numberOfCollectionItems {
+			(0 ... numberOfCollectionItems).forEach({ _ in
 				var randomRed: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
@@ -70,8 +70,20 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 					randomRed = CGFloat(arc4random_uniform(128))
 				}
 
-				colorsArray.append(UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0))
-			}
+				let color: UIColor
+
+				if #available(iOS 10.0, *) {
+					if traitCollection.displayGamut == .P3 {
+						color = UIColor(displayP3Red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
+					} else {
+						color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
+					}
+				} else {
+					color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
+				}
+
+				colorsArray.append(color)
+			})
 
 			colorsDict[tableViewSection] = colorsArray
 		}

@@ -116,7 +116,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 				offsetCorrection = cellLayoutAttribute.frame.origin.x - proposedXCoordWithInsets
 			}
 		}
-		
+
 		return CGPoint(x: proposedContentOffset.x + offsetCorrection, y: 0)
 	}
 }
