@@ -59,9 +59,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 		// self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
 		(0 ... numberOfSections).forEach { section in
-			var colorsArray: [UIColor] = []
-
-			(0 ... numberOfCollectionItems).forEach({ _ in
+			let colorsArray: [UIColor] = (0 ... numberOfCollectionItems).map({ _ -> UIColor in
 				var randomRed: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
 				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
@@ -82,7 +80,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 					color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
 				}
 
-				colorsArray.append(color)
+				return color
 			})
 
 			colorsDict[section] = colorsArray
