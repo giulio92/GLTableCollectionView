@@ -58,7 +58,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 		// navigation bar for this view controller.
 		// self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-		for tableViewSection in 0..<numberOfSections {
+		(0 ... numberOfSections).forEach { section in
 			var colorsArray: [UIColor] = []
 
 			(0 ... numberOfCollectionItems).forEach({ _ in
@@ -85,7 +85,7 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 				colorsArray.append(color)
 			})
 
-			colorsDict[tableViewSection] = colorsArray
+			colorsDict[section] = colorsArray
 		}
 	}
 
