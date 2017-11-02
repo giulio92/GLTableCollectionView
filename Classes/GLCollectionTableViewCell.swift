@@ -37,6 +37,10 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 	}
 
 	override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+		guard proposedContentOffset.x > 0 else {
+			return CGPoint(x: 0, y: 0)
+		}
+
 		// If the UICollectionView has paginatedScroll set to false there is no
 		// need to apply any pagination logic, we will return the current
 		// proposedContentOffset coordinates.
@@ -112,7 +116,7 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 				offsetCorrection = cellLayoutAttribute.frame.origin.x - proposedXCoordWithInsets
 			}
 		}
-
+		
 		return CGPoint(x: proposedContentOffset.x + offsetCorrection, y: 0)
 	}
 }
