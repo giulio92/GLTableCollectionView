@@ -76,9 +76,9 @@ final class GLTableCollectionViewTests: XCTestCase {
 		XCTAssertEqual(colorsDictionary.count, tableCollectionView.numberOfSections,
 		               "The number of keys in the colors dictionary must match the number of UITableView sections")
 
-		for colorSection: Int in 0..<tableCollectionView.numberOfSections {
+		(0 ... tableCollectionView.numberOfSections - 1).forEach { colorSection in
 			XCTAssertEqual(colorsDictionary[colorSection]!.count, tableCollectionView.numberOfCollectionItems,
-			               "The number of colors for section must match the number of UICollectionCells")
+						   "The number of colors for section must match the number of UICollectionCells")
 		}
 	}
 
