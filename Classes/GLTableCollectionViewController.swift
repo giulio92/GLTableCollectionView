@@ -58,33 +58,37 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
 		// navigation bar for this view controller.
 		// self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-		(0 ... numberOfSections).forEach { section in
-			let colorsArray: [UIColor] = (0 ... numberOfCollectionItems).map({ _ -> UIColor in
-				var randomRed: CGFloat = CGFloat(arc4random_uniform(256))
-				let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
-				let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
+		(0 ... numberOfSections - 1).forEach { section in
+			colorsDict[section] = randomRowColors()
+		}
+	}
 
-				if randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0 {
-					randomRed = CGFloat(arc4random_uniform(128))
-				}
+	private final func randomRowColors() -> [UIColor] {
+		let colors: [UIColor] = (0 ... numberOfCollectionItems - 1).map({ _ -> UIColor in
+			var randomRed: CGFloat = CGFloat(arc4random_uniform(256))
+			let randomGreen: CGFloat = CGFloat(arc4random_uniform(256))
+			let randomBlue: CGFloat = CGFloat(arc4random_uniform(256))
 
-				let color: UIColor
+			if randomRed == 255.0 && randomGreen == 255.0 && randomBlue == 255.0 {
+				randomRed = CGFloat(arc4random_uniform(128))
+			}
 
-				if #available(iOS 10.0, *) {
-					if traitCollection.displayGamut == .P3 {
-						color = UIColor(displayP3Red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
-					} else {
-						color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
-					}
+			let color: UIColor
+
+			if #available(iOS 10.0, *) {
+				if traitCollection.displayGamut == .P3 {
+					color = UIColor(displayP3Red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
 				} else {
 					color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
 				}
+			} else {
+				color = UIColor(red: randomRed / 255.0, green: randomGreen / 255.0, blue: randomBlue / 255.0, alpha: 1.0)
+			}
 
-				return color
-			})
+			return color
+		})
 
-			colorsDict[section] = colorsArray
-		}
+		return colors
 	}
 
 	override func didReceiveMemoryWarning() {
