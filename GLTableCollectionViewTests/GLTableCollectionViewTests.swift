@@ -27,176 +27,176 @@
 //  IN THE SOFTWARE.
 //
 
-import XCTest
 @testable import GLTableCollectionView
+import XCTest
 
 final class GLTableCollectionViewTests: XCTestCase {
-	private var tableCollectionView: GLTableCollectionViewController!
-	private var visibleCells: [UITableViewCell]!
+    private var tableCollectionView: GLTableCollectionViewController!
+    private var visibleCells: [UITableViewCell]!
 
-	override func setUp() {
-		super.setUp()
-		// Put setup code here. This method is called before the invocation of
-		// each test method in the class.
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of
+        // each test method in the class.
 
-		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		tableCollectionView = storyboard.instantiateViewController(withIdentifier: "tableCollectionView") as! GLTableCollectionViewController
-		tableCollectionView.beginAppearanceTransition(true, animated: false)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        tableCollectionView = storyboard.instantiateViewController(withIdentifier: "tableCollectionView") as! GLTableCollectionViewController
+        tableCollectionView.beginAppearanceTransition(true, animated: false)
 
-		visibleCells = tableCollectionView.tableView.visibleCells
-	}
+        visibleCells = tableCollectionView.tableView.visibleCells
+    }
 
-	// MARK: <GLTableCollectionViewController>
+    // MARK: <GLTableCollectionViewController>
 
-	func testInstanceVariables() {
-		XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0,
-		                     "numberOfSections was: \(tableCollectionView.numberOfSections)\nUITableView must have at least one section")
+    func testInstanceVariables() {
+        XCTAssertGreaterThan(tableCollectionView.numberOfSections, 0,
+                             "numberOfSections was: \(tableCollectionView.numberOfSections)\nUITableView must have at least one section")
 
-		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0,
-		                     "numberOfCollectionsForRow was: \(tableCollectionView.numberOfCollectionsForRow)\nThere must be at least a GLIndexedCollectionView per UITableViewCell")
+        XCTAssertGreaterThan(tableCollectionView.numberOfCollectionsForRow, 0,
+                             "numberOfCollectionsForRow was: \(tableCollectionView.numberOfCollectionsForRow)\nThere must be at least a GLIndexedCollectionView per UITableViewCell")
 
-		XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0,
-		                     "numberOfCollectionItems was: \(tableCollectionView.numberOfCollectionItems)\nThere must be at least one GLIndexedCollectionViewCell")
+        XCTAssertGreaterThan(tableCollectionView.numberOfCollectionItems, 0,
+                             "numberOfCollectionItems was: \(tableCollectionView.numberOfCollectionItems)\nThere must be at least one GLIndexedCollectionViewCell")
 
-		XCTAssertNotEqual(GLTableCollectionViewController.tableCellID, "",
-		                  "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must not be empty")
+        XCTAssertNotEqual(GLTableCollectionViewController.tableCellID, "",
+                          "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must not be empty")
 
-		XCTAssertTrue(GLTableCollectionViewController.tableCellID.hasSuffix("_section_#"),
-		              "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must end with section number suffix")
+        XCTAssertTrue(GLTableCollectionViewController.tableCellID.hasSuffix("_section_#"),
+                      "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must end with section number suffix")
 
-		XCTAssertTrue((GLTableCollectionViewController.tableCellID.components(separatedBy: "#").count - 1) == 1,
-		              "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
-	}
+        XCTAssertTrue((GLTableCollectionViewController.tableCellID.components(separatedBy: "#").count - 1) == 1,
+                      "tableCellID was: \(GLTableCollectionViewController.tableCellID)\nUITableViewCell's cellIdentifier must contain only one # in it")
+    }
 
-	func testRandomColorsGeneration() {
-		let colorsDictionary: [Int: [UIColor]] = tableCollectionView.colorsDict
+    func testRandomColorsGeneration() {
+        let colorsDictionary: [Int: [UIColor]] = tableCollectionView.colorsDict
 
-		XCTAssertNotNil(colorsDictionary, "Colors dictionary is nil")
-		XCTAssertNotEqual(colorsDictionary.count, 0, "Colors dictionary is empty")
-		XCTAssertEqual(colorsDictionary.count, tableCollectionView.numberOfSections,
-		               "The number of keys in the colors dictionary must match the number of UITableView sections")
+        XCTAssertNotNil(colorsDictionary, "Colors dictionary is nil")
+        XCTAssertNotEqual(colorsDictionary.count, 0, "Colors dictionary is empty")
+        XCTAssertEqual(colorsDictionary.count, tableCollectionView.numberOfSections,
+                       "The number of keys in the colors dictionary must match the number of UITableView sections")
 
-		(0 ... tableCollectionView.numberOfSections - 1).forEach { colorSection in
-			XCTAssertEqual(colorsDictionary[colorSection]!.count, tableCollectionView.numberOfCollectionItems,
-						   "The number of colors for section must match the number of UICollectionCells")
-		}
-	}
+        (0 ... tableCollectionView.numberOfSections - 1).forEach { colorSection in
+            XCTAssertEqual(colorsDictionary[colorSection]!.count, tableCollectionView.numberOfCollectionItems,
+                           "The number of colors for section must match the number of UICollectionCells")
+        }
+    }
 
-	func testTableViewDataSource() {
-		XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
-	}
+    func testTableViewDataSource() {
+        XCTAssertNotNil(tableCollectionView.tableView.dataSource, "UITableView dataSource is nil")
+    }
 
-	func testTableViewDelegate() {
-		XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
-	}
+    func testTableViewDelegate() {
+        XCTAssertNotNil(tableCollectionView.tableView.delegate, "UITableView delegate is nil")
+    }
 
-	func testUITableViewCellClasses() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testUITableViewCellClasses() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			if cell is GLCollectionTableViewCell {
-				return
-			} else {
-				XCTAssertTrue(cell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
-			}
-		}
-	}
+        visibleCells.forEach { cell in
+            if cell is GLCollectionTableViewCell {
+                return
+            } else {
+                XCTAssertTrue(cell is GLCollectionTableViewCell, "UITableViewCells must be GLCollectionTableViewCell")
+            }
+        }
+    }
 
-	func testTableViewCellIdentifiers() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testTableViewCellIdentifiers() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			guard let tableViewCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
-				fatalError("UITableViewCells must be GLCollectionTableViewCell")
-			}
+        visibleCells.forEach { cell in
+            guard let tableViewCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+                fatalError("UITableViewCells must be GLCollectionTableViewCell")
+            }
 
-			guard let reuseID: String = tableViewCell.reuseIdentifier else {
-				fatalError("UITableViewCells must have a reuse identifier")
-			}
+            guard let reuseID: String = tableViewCell.reuseIdentifier else {
+                fatalError("UITableViewCells must have a reuse identifier")
+            }
 
-			XCTAssertTrue(Int(reuseID.components(separatedBy: "#").last!)! >= 0,
-			              "GLCollectionTableViewCell cellIdentifier was: \(String(describing: reuseID))\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
-		}
-	}
+            XCTAssertTrue(Int(reuseID.components(separatedBy: "#").last!)! >= 0,
+                          "GLCollectionTableViewCell cellIdentifier was: \(String(describing: reuseID))\nGLCollectionTableViewCell's cellIdentifier must end with a positive integer")
+        }
+    }
 
-	// MARK: <GLCollectionTableViewCell>
+    // MARK: <GLCollectionTableViewCell>
 
-	func testCollectionViewsDelegateAndDataSource() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testCollectionViewsDelegateAndDataSource() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
-				fatalError("UITableViewCells must be GLCollectionTableViewCell")
-			}
+        visibleCells.forEach { cell in
+            guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+                fatalError("UITableViewCells must be GLCollectionTableViewCell")
+            }
 
-			XCTAssertNotNil(collectionTableCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
-			XCTAssertNotNil(collectionTableCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
-		}
-	}
+            XCTAssertNotNil(collectionTableCell.collectionView.dataSource, "GLCollectionTableViewCell dataSource is nil")
+            XCTAssertNotNil(collectionTableCell.collectionView.delegate, "GLCollectionTableViewCell delegate is nil")
+        }
+    }
 
-	func testCollectionNativePaginationFlag() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testCollectionNativePaginationFlag() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
-				fatalError("UITableViewCells must be GLCollectionTableViewCell")
-			}
+        visibleCells.forEach { cell in
+            guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+                fatalError("UITableViewCells must be GLCollectionTableViewCell")
+            }
 
-			if collectionTableCell.collectionViewPaginatedScroll == true {
-				XCTAssertFalse(collectionTableCell.collectionView.isPagingEnabled,
-				               "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
-			}
-		}
-	}
+            if collectionTableCell.collectionViewPaginatedScroll == true {
+                XCTAssertFalse(collectionTableCell.collectionView.isPagingEnabled,
+                               "Custom scrolling pagination and native UICollectionView pagination can't be enabled at the same time")
+            }
+        }
+    }
 
-	func testCollectionViewPaginationConsistency() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testCollectionViewPaginationConsistency() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
-				fatalError("UITableViewCells must be GLCollectionTableViewCell")
-			}
+        visibleCells.forEach { cell in
+            guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+                fatalError("UITableViewCells must be GLCollectionTableViewCell")
+            }
 
-			if collectionTableCell.collectionViewPaginatedScroll == true {
-				XCTAssertTrue(collectionTableCell.collectionView.isScrollEnabled,
-				              "If custom paginated scroll is enabled the UICollectionView should be scrollable")
+            if collectionTableCell.collectionViewPaginatedScroll == true {
+                XCTAssertTrue(collectionTableCell.collectionView.isScrollEnabled,
+                              "If custom paginated scroll is enabled the UICollectionView should be scrollable")
 
-				XCTAssertTrue(collectionTableCell.collectionView.isUserInteractionEnabled,
-				              "If custom paginated scroll is enabled the UICollectionView should be user interactive")
-			}
-		}
-	}
+                XCTAssertTrue(collectionTableCell.collectionView.isUserInteractionEnabled,
+                              "If custom paginated scroll is enabled the UICollectionView should be user interactive")
+            }
+        }
+    }
 
-	func testCollectionViewCellHeights() {
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+    func testCollectionViewCellHeights() {
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		let tableViewCellHeight: CGFloat = tableCollectionView.tableView.rowHeight
+        let tableViewCellHeight: CGFloat = tableCollectionView.tableView.rowHeight
 
-		XCTAssertLessThanOrEqual(tableViewCellHeight + (tableCollectionView.collectionTopInset + tableCollectionView.collectionBottomInset), tableViewCellHeight,
-		                         "UITableView rowHeight was: \(tableViewCellHeight)\nUICollectionViewCells height should be lower than rowHeight + (collectionTopInset + collectionBottomInset)")
-	}
+        XCTAssertLessThanOrEqual(tableViewCellHeight + (tableCollectionView.collectionTopInset + tableCollectionView.collectionBottomInset), tableViewCellHeight,
+                                 "UITableView rowHeight was: \(tableViewCellHeight)\nUICollectionViewCells height should be lower than rowHeight + (collectionTopInset + collectionBottomInset)")
+    }
 
-	// MARK: <Other>
+    // MARK: <Other>
 
-	func testOpaqueFlag() {
-		XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
+    func testOpaqueFlag() {
+        XCTAssertTrue(tableCollectionView.tableView.isOpaque, "The UITableView should be opaque for increased performances")
 
-		XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
+        XCTAssertGreaterThan(visibleCells.count, 0, "UITableView visible cells must be greater than 0")
 
-		visibleCells.forEach { cell in
-			guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
-				fatalError("UITableViewCells must be GLCollectionTableViewCell")
-			}
+        visibleCells.forEach { cell in
+            guard let collectionTableCell: GLCollectionTableViewCell = cell as? GLCollectionTableViewCell else {
+                fatalError("UITableViewCells must be GLCollectionTableViewCell")
+            }
 
-			XCTAssertTrue(collectionTableCell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performances")
-		}
-	}
+            XCTAssertTrue(collectionTableCell.collectionView.isOpaque, "The UICollectionView should be opaque for increased performances")
+        }
+    }
 
-	override func tearDown() {
-		// Put teardown code here. This method is called after the invocation of
-		// each test method in the class.
-		super.tearDown()
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of
+        // each test method in the class.
+        super.tearDown()
 
-		tableCollectionView.endAppearanceTransition()
-	}
+        tableCollectionView.endAppearanceTransition()
+    }
 }

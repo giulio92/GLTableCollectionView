@@ -30,10 +30,10 @@
 import UIKit
 
 class GLIndexedCollectionViewCell: UICollectionViewCell {
-	static let identifier: String = "collectionViewCellID"
+    static let identifier: String = "collectionViewCellID"
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
-		// Initialization code
-	}
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 }
