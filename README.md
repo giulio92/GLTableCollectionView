@@ -53,8 +53,8 @@ var paginationEnabled: Bool = true
 - [SwiftLint](https://github.com/realm/SwiftLint) (Optional, but _highly_ suggested)
 
 ## Donations
-[PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=giulio%2elombardo%40gmail%2ecom&lc=IT&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
+- [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=giulio%2elombardo%40gmail%2ecom&lc=IT&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
 
-BTC: `3Mc25tFtxxwD9mXqtxFn5Qvkbndg3NhvXi`
+- BTC: `3Mc25tFtxxwD9mXqtxFn5Qvkbndg3NhvXi`
 
-LTC: `MUoZzdDqD2BkWsVpcSv1pQVHhCcUuiADCL`
+- LTC: `MUoZzdDqD2BkWsVpcSv1pQVHhCcUuiADCL`
