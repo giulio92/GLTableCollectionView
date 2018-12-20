@@ -130,8 +130,8 @@ final class GLTableCollectionViewController: UITableViewController, UICollection
             cell = GLCollectionTableViewCell(style: .default, reuseIdentifier: GLTableCollectionViewController.tableCellID + indexPath.section.description)
 
             // Configure the cell...
-            cell!.selectionStyle = .none
-            cell!.collectionViewPaginatedScroll = paginationEnabled
+            cell?.selectionStyle = .none
+            cell?.collectionViewPaginatedScroll = paginationEnabled
         }
 
         return cell!

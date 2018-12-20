@@ -108,7 +108,8 @@ class GLIndexedCollectionViewFlowLayout: UICollectionViewFlowLayout {
             // if statement below. This will fix the "last cell" issue.
             let discardableScrollingElementsFrame: CGFloat = collectionView.contentOffset.x + (collectionView.frame.size.width / 2)
 
-            if (cellLayoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) || (cellLayoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
+            if (cellLayoutAttribute.center.x <= discardableScrollingElementsFrame && velocity.x > 0) ||
+				(cellLayoutAttribute.center.x >= discardableScrollingElementsFrame && velocity.x < 0) {
                 return
             }
 
