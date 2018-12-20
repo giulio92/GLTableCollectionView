@@ -157,7 +157,7 @@ class GLCollectionTableViewCell: UITableViewCell {
     /// Default value is `nil`, since `Bool` is `Optional`.
     var collectionViewPaginatedScroll: Bool?
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         collectionFlowLayout = GLIndexedCollectionViewFlowLayout()
