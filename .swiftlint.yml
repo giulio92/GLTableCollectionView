@@ -1,21 +1,41 @@
-# rule identifiers to exclude from running
-disabled_rules:
-  - line_length
-
-# some rules are only opt-in
 opt_in_rules:
-# Find all the available rules by running:
-# swiftlint rules
-  
+  - anyobject_protocol
+  - closure_spacing
+  - contains_over_first_not_nil
+  - convenience_type
+  - empty_count
+  - empty_string
+  - empty_xctest_method
+  - explicit_init
+  - fallthrough
+  - fatal_error_message
+  - file_name
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - single_test_class
+  - sorted_imports
+  - toggle_bool
+  - unused_import
+  - unused_private_declaration
 
-# paths to include during linting. `--path` is ignored if present.
 included:
-  
 
-# paths to ignore during linting. Takes precedence over `included`.
-excluded:
-  
-
-# configurable rules can be customized from this configuration file
-# binary rules can set their severity level  
 force_cast: warning
+
+identifier_name:
+  min_length: 2
+
+line_length: 160
+
+disabled_rules:
+  - nesting
+  - custom_rules
