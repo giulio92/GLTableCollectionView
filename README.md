@@ -9,7 +9,7 @@
 |`master`|[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=592889ed482e8d00016f99eb&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/592889ed482e8d00016f99eb/build/latest?branch=master)|
 |`develop`|[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=592889ed482e8d00016f99eb&branch=develop&build=latest)](https://dashboard.buddybuild.com/apps/592889ed482e8d00016f99eb/build/latest?branch=develop)|
 
-![Language](https://img.shields.io/badge/language-Swift%204.x-orange.svg)
+![Language](https://img.shields.io/badge/language-Swift%204.2-orange.svg)
 ![Supported platforms](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 [![codebeat badge](https://codebeat.co/badges/5a29ccd4-fda0-45d1-ae57-e7158e01449a)](https://codebeat.co/projects/github-com-giulio92-gltablecollectionview)
 [![license](https://img.shields.io/github/license/giulio92/GLTableCollectionView.svg)](https://github.com/giulio92/GLTableCollectionView/blob/master/LICENSE.txt)
@@ -47,8 +47,8 @@ var paginationEnabled: Bool = true
 </p>
 
 ## Requirements
-- Xcode 9.0+
-- Swift 4.0+
+- Xcode 10.0+
+- Swift 4.2+
 - iOS 9.0+
 - [SwiftLint](https://github.com/realm/SwiftLint) (Optional, but _highly_ suggested)
 
